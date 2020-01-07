@@ -121,6 +121,12 @@ function newCharacter() {
     submit.value = 'Submit'
     submit.addEventListener("click", newPlayerSubmit)
     newCharacterContainer.appendChild(submit)
+
+    // error area
+    var errorDiv = document.createElement('div')
+    errorDiv.id= 'newCharacterError'
+    newCharacterContainer.appendChild(errorDiv)
+
     loader(false)
 }
 

@@ -1,6 +1,8 @@
 function newPlayerSubmit(){
     // start loader icon
     loader(true)
+    // clear out previous error log
+    document.getElementById('newCharacterError').innerHTML = ''
     // get all player information
     var playerInfo = {
         name: document.getElementById('playerName').value,
@@ -36,9 +38,12 @@ function newPlayerSubmit(){
             success: function (data){
                 console.log(data)
                 // more things
+                // load up main page
+                loadMain(playerInfo)
             },
             error: function (error) {
                 console.log(error)
+                document.getElementById('newCharacterError').innerHTML = 'Oops something happened. Give this to Lumin or Menelous to diagnose.'
                 // display message to customer to retry. Esentially a woops message
             }
         })
@@ -46,6 +51,7 @@ function newPlayerSubmit(){
     }
     else {
         // show popup and give error message
+        document.getElementById('newCharacterError').innerHTML = errorMessage
         console.log(errorMessage)
     }
     
