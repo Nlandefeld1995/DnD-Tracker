@@ -46,6 +46,7 @@ function newPlayerSubmit(){
     }
     else {
         // show popup and give error message
+        console.log(errorMessage)
     }
     
 
