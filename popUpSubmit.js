@@ -4,15 +4,15 @@ function newPlayerSubmit(){
     // clear out previous error log
     document.getElementById('newCharacterError').innerHTML = ''
     // get all player information
-    var playerInfo = {
-        name: document.getElementById('playerName').value,
-        xp: document.getElementById('playerXp').value,
-        level: findLevel(document.getElementById('playerXp').value),
-        class: document.getElementById('playerClass').value,
-        race: document.getElementById('playerRace').value,
-        date: new Date()
+    
+        playerInfo.name =  document.getElementById('playerName').value
+        playerInfo.xp =  document.getElementById('playerXp').value
+        playerInfo.level =  findLevel(document.getElementById('playerXp').value)
+        playerInfo.class =  document.getElementById('playerClass').value
+        playerInfo.race =  document.getElementById('playerRace').value
+        playerInfo.date =  new Date()
 
-    }
+    
     // validate all player information
         // if it is invalid give warning message and exit function
         var errorCount = 0

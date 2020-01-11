@@ -1,6 +1,9 @@
-function loadMain(playerInfo){
+function loadMain(){
     var main = document.getElementById('mainContainer')
     
+    
+
+
     // when done turn loader off 
     loader(false)
     // hide character load page
