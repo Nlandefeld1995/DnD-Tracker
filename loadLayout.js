@@ -1,5 +1,5 @@
 // build pop up module
-// loader on
+// turn loader on
 loader(true)
 // popup
 var popup = document.getElementById('initPopUp')
