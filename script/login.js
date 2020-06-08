@@ -46,7 +46,7 @@ function validateLogin() {
 
     // From db get potential usernames and passwords
     // map them as a array of objects
-    // [ {username: 'x', password: 'y', characterId: id},.....]
+    // [ {username: 'x', password: 'y', userId: id},.....]
     let usernamesPasswords = []
     let valid = false
     let errorText = ''
@@ -54,7 +54,7 @@ function validateLogin() {
         if (username == usernamesPasswords[i].username) {
             if (password == usernamesPasswords[i].password) {
                 valid = true
-                loaduser(usernamesPasswords[i].id)
+                loaduser(usernamesPasswords[i].userId)
             }
             else {
                 errorText = 'Invalid Password'
