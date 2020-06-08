@@ -1,21 +1,34 @@
 <!DOCTYPE html>
+
 <head>
 
 </head>
+<link rel="stylesheet" href="style/style.css" />
+
 <body>
-    <div id="loaderDiv" style="display: none"></div>
     <!-- Main container will be where everything is tracked -->
     <div id='mainContainer'>
-        <!-- Popup will be the module to add/load a character -->
-        <div id="initPopUp" ></div>
+        <div id="leftColumn">
+            <div id="name"></div>
+            <div id="proficiencies"></div>
+        </div>
+        <div id="middleColumn">
+            <div id="navigation"></div>
+            <div id="updateStats"></div>
+        </div>
+        <div id="rightColumn">
+            <div id="hitPoints"></div>
+            <div id="deathSaves"></div>
+            <div id="specialAbilities"></div>
+            <div id="weapons"></div>
+            <div id="money"></div>
+        </div>
     </div>
     <!-- Putting script files at end of body so all html elements are loaded before running any JS -->
-    <script src = "jquery.js"></script>
-    <script src = "playerInfo.js"></script>
-    <script src = "levelXp.js"></script>
-    <script src = "loader.js"></script>
-    <script src = "popUpSubmit.js"></script>
-    <script src = "loadLayout.js"></script>
-    <script src = "loadMain.js"></script>
-    
+    <script src="jquery.js"></script>
+    <script src="script/start.js"></script>
+    <script src="script/login.js"></script>
+    <script src="script/createCharacter.js"></script>
+    <script src="script/loadCharacter.js"></script>
+
 </body>
