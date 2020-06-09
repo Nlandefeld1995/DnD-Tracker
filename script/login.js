@@ -15,6 +15,8 @@ function login() {
     passwordInput.type = 'password'
     passwordInput.id = 'loginPasswordInput'
     passwordInput.placeholder = "password"
+    // cancel button
+    let cancel = cancelButton()
 
     // submit button
     let submit = document.createElement('input')
@@ -35,6 +37,7 @@ function login() {
     modal.appendChild(passwordText)
     modal.appendChild(passwordInput)
     modal.appendChild(br)
+    modal.appendChild(cancel)
     modal.appendChild(submit)
     modal.appendChild(errorArea)
 
@@ -47,7 +50,7 @@ function validateLogin() {
     // From db get potential usernames and passwords
     // map them as a array of objects
     // [ {username: 'x', password: 'y', userId: id},.....]
-    let usernamesPasswords = []
+    let usernamesPasswords = [] // load from db
     let valid = false
     let errorText = ''
     for (i = 0; i < usernamesPasswords.length; i++) {

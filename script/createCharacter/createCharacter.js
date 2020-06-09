@@ -1,10 +1,7 @@
 let character = {
-    proficiencies: {}
 }
 let classes = ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard']
-function valueById(id) {
-    return document.getElementById(id).value
-}
+
 function findMod(score) {
     let mod = 0
     switch (score) {
@@ -101,25 +98,7 @@ function findMod(score) {
     }
     return mod
 }
-function validateString(string, len) {
-    let valid
-    if (string.length >= len) {
-        valid = true
-    }
-    else {
-        valid = false
-    }
-    return valid
-}
-function validateWholeNumber(num) {
-    let valid
-    if (parseInt(num)) {
-        if (Number.isInteger(parseInt(num))) { valid = true }
-        else { valid = false }
-    }
-    else { valid = false }
-    return valid
-}
+
 function validateClass(input) {
     let valid = false
     for (i = 0; i < classes.length; i++) {
@@ -144,7 +123,7 @@ function createHtmlElement(objects, backFun, nextFun, last) {
         input.type = obj.type
         input.id = obj.id
         if (obj.default) {
-            input = obj.default
+            input.value = obj.default
 
         }
         div.appendChild(text)
@@ -153,6 +132,8 @@ function createHtmlElement(objects, backFun, nextFun, last) {
         html.appendChild(div)
     });
     let buttons = document.createElement('div')
+    let cancel = cancelButton()
+    buttons.appendChild(cancel)
     if (backFun.length > 3) {
         let back = document.createElement('input')
         back.type = 'button'
@@ -189,4 +170,3 @@ function newCharacter() {
 }
 
 
-function saveCharacter() { }
