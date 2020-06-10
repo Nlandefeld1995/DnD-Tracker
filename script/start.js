@@ -1,7 +1,10 @@
 $(document).ready(function () {
     createPopUp()
 })
-
+// Global Variables
+var globalUserId
+var globalCharacterID
+var globalCharacter = {}
 function createPopUp(){
     // create modal for login screen
     let modal = document.createElement('div')

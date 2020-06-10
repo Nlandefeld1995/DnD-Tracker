@@ -23,7 +23,7 @@ function login() {
     submit.type = 'button'
     submit.id = 'loginSubmit'
     submit.value = 'Login'
-    submit.onclick = 'validateLogin()'
+    submit.onclick = validateLogin
 
     // add area for potential error
     let errorArea = document.createElement('div')
@@ -43,36 +43,43 @@ function login() {
 
 }
 
-function validateLogin() {
-    username = document.getElementById('loginUsernameInput')
-    password = document.getElementById('loginPasswordInput')
-
+async function validateLogin() {
     // From db get potential usernames and passwords
-    // map them as a array of objects
-    // [ {username: 'x', password: 'y', userId: id},.....]
-    let usernamesPasswords = [] // load from db
+    let users = await dbGetUsers()
+
+    username = valueById('loginUsernameInput')
+    password = valueById('loginPasswordInput')
     let valid = false
     let errorText = ''
-    for (i = 0; i < usernamesPasswords.length; i++) {
-        if (username == usernamesPasswords[i].username) {
-            if (password == usernamesPasswords[i].password) {
+    users = users.results
+    console.log(users)
+    for (i = 0; i < users.length; i++) {
+        errorText = ''
+        console.log(`${username} == ${users[i].username}`)
+        if (username == users[i].username) {
+            if (password == users[i].password) {
                 valid = true
-                loaduser(usernamesPasswords[i].userId)
+                globalUserId = users[i].objectId
+                loaduser()
+                break
             }
             else {
-                errorText = 'Invalid Password'
+                errorText += 'Invalid Password'
             }
         }
         else {
-            errorText = 'Invalid Username/Password'
+            errorText += 'Invalid Username/Password'
         }
     }
     if (!valid) {
         displayLoginError(errorText)
     }
+
+
+
 }
 function displayLoginError(text) {
-    let errorArea = document.getElementById('loginErrorArea')
+    let errorArea = valueById('loginErrorArea')
     let error = document.createElement('a')
     error.innerText = text
     errorArea.appendChild(error)

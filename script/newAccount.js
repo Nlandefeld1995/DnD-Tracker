@@ -54,12 +54,11 @@ function newAccount() {
     modal.appendChild(submit)
     modal.appendChild(errorArea)
 }
-function validateNewAccount() {
+async function validateNewAccount() {
     let error = false
     let errorText = ''
    
     let username = valueById('createUsernameInput')
-    console.log(username)
     if (validateString(username, 5)) {
         userInformation.username = username
     }
@@ -67,24 +66,36 @@ function validateNewAccount() {
         error = true
         errorText += ` Please enter a valid username longer than 5 characters. `
     }
+    let users = await dbGetUsers()
+    users = users.results
+    let userNamesExists = []
+    for(i=0; i< users.length; i++){
+        userNamesExists.push(users[i].username)
+    }
     // Need to validate the username does not already exist
     let password1 = valueById('createPasswordInput')
     let password2 = valueById('createPasswordInput2')
-    console.log(password1)
-    console.log(password2)
-    if (password1 == password2) {
-        if (validateString(password1, 5)) {
-            userInformation.password = password1
+    
+    if (userNamesExists.includes(username)){
+        error = true
+        errorText += `Username already exists`
+    }
+    else{
+        if (password1 == password2) {
+            if (validateString(password1, 5)) {
+                userInformation.password = password1
+            }
+            else {
+                error = true
+                errorText += ` Password is too short please create a password of 5 characters or more. `
+            }
         }
         else {
             error = true
-            errorText += ` Password is too short please create a password of 5 characters or more. `
+            errorText += ` Passwords do not match. `
         }
     }
-    else {
-        error = true
-        errorText += ` Passwords do not match. `
-    }
+    
 
     if (error) {
         let errorArea = document.getElementById('createErrorArea')
@@ -93,10 +104,11 @@ function validateNewAccount() {
         errorArea.appendChild(error)
     }
     else {
-        let user = dbCreateUser(JSON.stringify(userInformation))
-
+        let user = await dbCreateUser(JSON.stringify(userInformation))
+        console.log(user)
         if(user.objectId){
             userInformation.userId = user.objectId
+            globalUserId = user.objectId
             newCharacter()
         }
         else {
