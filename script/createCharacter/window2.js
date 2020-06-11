@@ -163,8 +163,7 @@ function window2Create() {
             id: "medicine",
             default: character.medicine,
             required: false
-        }
-        ,
+        },
         {
             ask: "Proficient Perception (wisdom)",
             type: "checkbox",
@@ -422,7 +421,6 @@ function window2Validate() {
         });
     }
     if (error) {
-
         let errors = document.createElement('a')
         errors.innerText = errorText
         console.log(errors)
