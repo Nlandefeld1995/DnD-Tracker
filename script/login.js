@@ -78,9 +78,9 @@ async function validateLogin() {
 
 
 }
-function displayLoginError(text) {
-    let errorArea = valueById('loginErrorArea')
-    let error = document.createElement('a')
+async function displayLoginError(text) {
+    let errorArea =  document.getElementById('loginErrorArea')
+    let error =  document.createElement('a')
     error.innerText = text
     errorArea.appendChild(error)
 }

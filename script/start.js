@@ -9,6 +9,7 @@ function createPopUp(){
     // create modal for login screen
     let modal = document.createElement('div')
     modal.id = 'popupModal'
+    modal.display = 'block'
     modal.className = 'modal'
     let body = document.getElementById('mainContainer')
     body.appendChild(modal)
@@ -39,6 +40,7 @@ function loadPopUp() {
     buttonCreate.value = "Create New Account"
     buttonCreate.onclick = newAccount
 
+    
     // append buttons
     loginCreateDiv.appendChild(buttonLogin)
     loginCreateDiv.appendChild(buttonCreate)
