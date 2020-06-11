@@ -188,4 +188,3 @@ function dbUpdateCharacter(id, data) {
 
     return response
 }
-// change to push
