@@ -1,8 +1,3 @@
-async function loadMainScreen(){
-    let main = document.getElementById('mainContainer')
-    let mainColumn1 = await column1()
-    main.appendChild(mainColumn1)
-}
 
 async function column1(){
     let column1 = document.createElement('div')
