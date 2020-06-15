@@ -24,7 +24,7 @@ function window3Create(){
             required: true
         }
     ] 
-    let html = createHtmlElement(hitPoints, 'window2Create', 'window3Validate', true)
+    let html = createHtmlElement(hitPoints, 'window2Create', 'window3Validate', false)
     modal.appendChild(html)
 }
 
@@ -61,5 +61,15 @@ function window3Validate(){
     else{
         error = true
         errorText += ` Please enter a valid speed`
+    }
+    if (error) {
+        let errors = document.createElement('a')
+        errors.innerText = errorText
+        console.log(errors)
+        valueById('errorArea').appendChild(errors)
+    }
+    else {
+        console.log(character)
+        window4Create()
     }
 }
