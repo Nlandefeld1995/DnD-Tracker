@@ -1,4 +1,5 @@
 async function loadMainScreen(){
+
     // add loader 
     // turn on 
     let main = document.getElementById('mainContainer')
