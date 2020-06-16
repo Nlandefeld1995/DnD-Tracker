@@ -11,6 +11,7 @@ function newAccount() {
     usernameInput.type = "textbox"
     usernameInput.id = 'createUsernameInput'
     usernameInput.placeholder = "username"
+    usernameInput.className = 'input'
     // create password boxes
     let passwordText = document.createElement('a')
     passwordText.innerText = "Password: "
@@ -18,6 +19,7 @@ function newAccount() {
     passwordInput.type = 'password'
     passwordInput.id = 'createPasswordInput'
     passwordInput.placeholder = "password"
+    passwordInput.className = 'input'
     // password second time
     let passwordText2 = document.createElement('a')
     passwordText2.innerText = "Password Again: "
@@ -25,6 +27,7 @@ function newAccount() {
     passwordInput2.type = 'password'
     passwordInput2.id = 'createPasswordInput2'
     passwordInput2.placeholder = "password"
+    passwordInput2.className = 'input'
 
     // cancel button 
     let cancel = cancelButton()
@@ -33,6 +36,7 @@ function newAccount() {
     submit.type = 'button'
     submit.id = 'createSubmit'
     submit.value = 'Submit'
+    submit.className = 'input'
     submit.onclick = validateNewAccount
 
     // add area for potential error

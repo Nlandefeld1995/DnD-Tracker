@@ -56,7 +56,7 @@ async function column1(){
     // proficiancyBonusTextDiv.className = 'box-inner'
     let proficiancyBonusText = document.createElement('h5')
     proficiancyBonusText.innerText = 'Proficiancy Bonus'
-    proficiancyBonusText.className = 'profName'
+    proficiancyBonusText.className = 'profName2'
     proficiancyBonusTextDiv.appendChild(proficiancyBonusText)
 
     let proficiancyBonusValueDiv = document.createElement('div')
@@ -79,7 +79,7 @@ async function column1(){
     passivePerceptionTextDiv.className = 'proficiancyBox'
     let passivePerceptionText = document.createElement('h5')
     passivePerceptionText.innerText = 'Passive Wisdom (Perception)'
-    passivePerceptionText.className = 'profName'
+    passivePerceptionText.className = 'profName2'
 
     let passivePerceptionValueDiv = document.createElement('div')
     passivePerceptionValueDiv.className = 'proficiancyBox'

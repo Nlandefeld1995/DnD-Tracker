@@ -29,16 +29,19 @@ function loadPopUp() {
     // Buttons for login/create
     let loginCreateDiv = document.createElement('div')
     loginCreateDiv.id = "loginCreateDiv"
+    
     let buttonLogin = document.createElement('input')
     buttonLogin.type = 'button'
     buttonLogin.id = "buttonLogin"
     buttonLogin.value = "Login"
     buttonLogin.onclick = login
+    buttonLogin.className = 'input'
     let buttonCreate = document.createElement('input')
     buttonCreate.type = 'button'
     buttonCreate.id = "buttonCreate"
     buttonCreate.value = "Create New Account"
     buttonCreate.onclick = newAccount
+    buttonCreate.className = 'input'
 
     
     // append buttons
@@ -61,6 +64,7 @@ function cancelButton(){
     button.type = 'button'
     button.value = 'Cancel'
     button.onclick = loadPopUp
+    button.className = 'input'
     return button
 }
 function valueById(id) {
