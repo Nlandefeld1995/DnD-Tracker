@@ -1,6 +1,7 @@
 async function column2(){
     let column2 = document.createElement('div')
     column2.style.width = '50%'
+
     column2.style.borderRight = 'solid #b78846'
     column2.style.float = 'left'
     column2.style.paddingRight = '5px'
@@ -10,10 +11,12 @@ async function column2(){
     column2.id = 'mainColumn2'
     let playerinformation = await createPlayerInfo()
     column2.appendChild(playerinformation)
+
     return column2
 }
 
 async function createPlayerInfo(){
+
     let div = document.createElement('div')
     div.id = 'playerInfoDiv'
 
@@ -134,6 +137,7 @@ async function createPlayerInfo(){
 }
 
 async function createNavBar(){
+
     let navigation = [
         {
             label: 'Hit Points',
@@ -196,4 +200,3 @@ async function createNavBar(){
             order: 10
         }
     ]
-}
