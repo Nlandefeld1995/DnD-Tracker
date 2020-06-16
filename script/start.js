@@ -1,10 +1,24 @@
 $(document).ready(function () {
+    loadBackground()
     createPopUp()
 })
 // Global Variables
 var globalUserId
 var globalCharacterID
 var globalCharacter = {}
+
+function loadBackground(){
+    // let random = Math.floor(Math.random() * 21) + 1 
+    // let background = `artWork/${random}.jpg`
+    let main = document.getElementById('mainContainer')
+    let img = document.createElement('div')
+    img.id= 'backgroundImg'
+    img.style.backgroundImage = `url('logo.png')`
+    main.appendChild(img)
+    // document.body.style.backgroundImage = `url('logo.png')`;
+
+}
+
 function createPopUp(){
     // create modal for login screen
     let modal = document.createElement('div')
@@ -24,7 +38,7 @@ function loadPopUp() {
     modal.innerHTML = ''
     // Text for modal screen
     let modalText = document.createElement('h3')
-    modalText.innerText = `Welcome to your D&D tracker. Please login or create new character to continue.`
+    modalText.innerText = `Welcome to your D&D tracker. Please login or create a new account to continue.`
     modal.appendChild(modalText)
     // Buttons for login/create
     let loginCreateDiv = document.createElement('div')

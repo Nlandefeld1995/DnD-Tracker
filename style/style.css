@@ -1,35 +1,47 @@
 /* The Modal (background) */
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    text-align: center;
-    padding: 10px;
-  }
-  .input{
-    margin: 10px;
-    padding: 5px;
-    border-radius: 7px;
-    text-align: center;
-  }
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  text-align: center;
+  padding: 10px;
+}
 
+.input {
+  margin: 10px;
+  padding: 5px;
+  border-radius: 7px;
+  text-align: center;
+}
 
-  /* Settings Drop down */
+/* Modal Content/Box */
 
-  /* Dropdown Button */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+/* Settings Drop down */
+
+/* Dropdown Button */
+
 .dropbtn {
   background-color: whitesmoke;
   color: black;
@@ -40,25 +52,29 @@
 }
 
 /* The container <div> - needed to position the dropdown content */
+
 .settingsDropdown {
   position: relative;
   display: inline-block;
 }
-#settingsDiv{
+
+#settingsDiv {
   margin: 10px;
 }
 
 /* Dropdown Content (Hidden by Default) */
+
 .settingsDropdown-content {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
 /* Links inside the dropdown */
+
 .settingsDropdown-content a {
   color: black;
   padding: 12px 16px;
@@ -67,27 +83,37 @@
 }
 
 /* Change color of dropdown links on hover */
-.settingsDropdown-content a:hover {background-color: #ddd;}
+
+.settingsDropdown-content a:hover {
+  background-color: #ddd;
+}
 
 /* Show the dropdown menu on hover */
-.settingsDropdown:hover .settingsDropdown-content {display: block;}
+
+.settingsDropdown:hover .settingsDropdown-content {
+  display: block;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.settingsDropdown:hover .dropbtn {background-color: rgb(128, 127, 127);}
+
+.settingsDropdown:hover .dropbtn {
+  background-color: rgb(128, 127, 127);
+}
 
 /* Line break */
+
 hr {
   width: 100%;
   color: white;
   height: 5%;
-  
 }
 
 /* Input values */
-.characterInput{
+
+.characterInput {
   border: none;
-  
 }
+
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 * {
@@ -96,6 +122,7 @@ hr {
   border: 0;
   box-sizing: border-box;
 }
+
 *:before, *:after {
   box-sizing: border-box;
 }
@@ -103,10 +130,24 @@ hr {
 html, body {
   height: 100%;
   background: radial-gradient(#003, #000);
-  overflow: hidden;
+  overflow: auto;
   color: #fff;
   font-family: 'Open Sans';
   font-size: 18px;
+  background-repeat: no-repeat;
+  /* backgroundopacity: 60%; */
+}
+
+#backgroundImg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+  opacity: 0.25;
 }
 
 h1 {
@@ -127,6 +168,7 @@ h1 {
   margin-bottom: 10px;
   height: 160px;
 }
+
 .box:before, .box:after {
   content: ".";
   position: absolute;
@@ -139,12 +181,15 @@ h1 {
   top: 5px;
   text-align: center;
 }
+
 .box:before {
   left: 5px;
 }
+
 .box:after {
   right: 5px;
 }
+
 .box .box-inner {
   position: relative;
   border: 2px solid #b78846;
@@ -154,6 +199,7 @@ h1 {
   float: left;
   height: 100%;
 }
+
 .box .box-inner:before, .box .box-inner:after {
   content: ".";
   position: absolute;
@@ -166,12 +212,15 @@ h1 {
   bottom: -2px;
   text-align: center;
 }
+
 .box .box-inner:before {
   left: -2px;
 }
+
 .box .box-inner:after {
   right: -2px;
 }
+
 .box .box-inner2 {
   position: relative;
   border: 2px solid #b78846;
@@ -180,6 +229,7 @@ h1 {
   left: 25%;
   text-align: center;
 }
+
 .box .box-inner2:before, .box .box-inner2:after {
   /* content: "."; */
   position: absolute;
@@ -192,51 +242,61 @@ h1 {
   bottom: -2px;
   text-align: center;
 }
+
 .box .box-inner2:before {
   left: -2px;
 }
+
 .box .box-inner2:after {
   right: -2px;
 }
-.inputTextBox{
+
+.inputTextBox {
   text-align: center;
   width: 90%;
   background: none;
   color: white;
   font-size: large;
 }
-.inputTextBox2{
+
+.inputTextBox2 {
   text-align: center;
   width: 90%;
   background: none;
   color: white;
   font-size: xx-large;
 }
-.profName{
+
+.profName {
   margin-bottom: -10px;
   margin-top: 5px;
   position: relative;
   bottom: -40px;
 }
-.profName2{
+
+.profName2 {
   margin-bottom: -10px;
   margin-top: 5px;
   position: relative;
   bottom: -45px;
 }
-.sillsListDiv{
+
+.sillsListDiv {
   /* float: right; */
-  padding:inherit;
+  padding: inherit;
   margin-left: 45%;
   text-align: left;
   position: relative;
 }
-.radioButton{
+
+.radioButton {
   margin-right: 10px
 }
-ul{
+
+ul {
   list-style-type: none;
 }
-#proficiancyBonusDiv{
+
+#proficiancyBonusDiv {
   border: none
 }
