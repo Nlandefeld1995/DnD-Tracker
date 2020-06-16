@@ -15,7 +15,7 @@ function loadBackground(){
     img.id= 'backgroundImg'
     img.style.backgroundImage = `url('logo.png')`
     main.appendChild(img)
-    // document.body.style.backgroundImage = `url('logo.png')`;
+    // main.style.backgroundImage = `url('logo.png')`;
 
 }
 

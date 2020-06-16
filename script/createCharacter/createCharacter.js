@@ -109,7 +109,6 @@ function validateClass(input) {
     return valid
 }
 function createHtmlElement(objects, backFun, nextFun, last) {
-    console.log(objects)
     let html = document.createElement('div')
     objects.forEach(obj => {
         let div = document.createElement('div')

@@ -109,7 +109,6 @@ async function validateNewAccount() {
     }
     else {
         let user = await dbCreateUser(JSON.stringify(userInformation))
-        console.log(user)
         if(user.objectId){
             userInformation.userId = user.objectId
             globalUserId = user.objectId

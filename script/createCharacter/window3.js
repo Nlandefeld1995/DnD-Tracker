@@ -69,7 +69,6 @@ function window3Validate(){
         valueById('errorArea').appendChild(errors)
     }
     else {
-        console.log(character)
         window4Create()
     }
 }

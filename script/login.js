@@ -55,10 +55,8 @@ async function validateLogin() {
     let valid = false
     let errorText = ''
     users = users.results
-    console.log(users)
     for (i = 0; i < users.length; i++) {
         errorText = ''
-        console.log(`${username} == ${users[i].username}`)
         if (username == users[i].username) {
             if (password == users[i].password) {
                 valid = true

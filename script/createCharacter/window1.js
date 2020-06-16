@@ -131,7 +131,6 @@ function window1Validate() {
         valueById('errorArea').appendChild(errors)
     }
     else {
-        console.log(character)
         window2Create()
     }
 }

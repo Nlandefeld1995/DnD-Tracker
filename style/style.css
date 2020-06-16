@@ -134,7 +134,7 @@ html, body {
   color: #fff;
   font-family: 'Open Sans';
   font-size: 18px;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   /* backgroundopacity: 60%; */
 }
 
@@ -169,18 +169,7 @@ h1 {
   height: 160px;
 }
 
-.box:before, .box:after {
-  content: ".";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  font-size: 14px;
-  color: #b78846;
-  border: 2px solid #b78846;
-  line-height: 12px;
-  top: 5px;
-  text-align: center;
-}
+
 
 .box:before {
   left: 5px;
@@ -299,4 +288,33 @@ ul {
 
 #proficiancyBonusDiv {
   border: none
+}
+#playerInfoRow1, #playerInfoRow2{
+  display: flex;
+  border-bottom: 2px solid black;
+}
+.playerInfoRow{
+  display: flex;
+}
+#playerInfoDiv{
+  border-radius: 7px;
+    background-color: #501016;
+    color: #dad1d1;
+}
+.inputTextBox3 {
+  text-align: center;
+  width: 90%;
+  background: none;
+  font-size: large;
+  font-style: bold;
+  color: white;
+}
+.vl {
+  border-left: 2px solid black;
+  /* height: 500px; */
+  /* position: absolute; */
+  /* left: 50%; */
+  margin-left: 10px;
+  margin-right: 10px;
+  /* top: 0;
 }

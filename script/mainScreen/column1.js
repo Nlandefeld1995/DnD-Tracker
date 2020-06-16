@@ -4,6 +4,7 @@ async function column1(){
     column1.style.width = '25%'
     column1.style.borderRight = 'solid #b78846'
     column1.style.float = 'left'
+    column1.style.position='relative'
     column1.style.paddingRight = '5px'
     column1.id = 'mainColumn1'
     // div settings 
@@ -335,7 +336,7 @@ async function buildProficiancies(prof){
         let itemsListDiv = document.createElement('div')
         itemsListDiv.className = 'sillsListDiv'
         let ul = document.createElement('ul')
-        console.log(p)
+
         let children = p.children
         children.forEach( child => {
             let li = document.createElement('LI')
@@ -343,14 +344,10 @@ async function buildProficiancies(prof){
             radio.type = 'radio'
             radio.className = 'radioButton'
             let radioId = child.selected
-            console.log(character)
             radio.checked = character[radioId]
             li.appendChild(radio)
             let text = document.createElement('a')
             let valueId = child.id 
-            console.log(valueId)
-            console.log(character[valueId])
-            console.log(`character[${valueId}]`)
             text.innerText = `${character[valueId]} ${child.name}`
             li.appendChild(text)
             ul.appendChild(li)
