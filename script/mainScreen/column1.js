@@ -13,7 +13,6 @@ async function column1(){
             // delete character
             // logout
 
-    
     let settingsDiv = document.createElement('div')
     settingsDiv.id = 'settingsDiv'
     let settingsDrop = document.createElement('div')
