@@ -4,7 +4,6 @@ async function loaduser(){
     let user = await dbGetUserById(globalUserId)
     let characterToLoad = user.characters[0]
     character = await dbGetCharacterbyId(characterToLoad)
-    console.log(character)
     loadMainScreen()
     // get from db list of characters. Load first character
     // from db load character

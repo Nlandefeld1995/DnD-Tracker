@@ -109,7 +109,6 @@ function validateClass(input) {
     return valid
 }
 function createHtmlElement(objects, backFun, nextFun, last) {
-    console.log(objects)
     let html = document.createElement('div')
     objects.forEach(obj => {
         let div = document.createElement('div')
@@ -122,8 +121,10 @@ function createHtmlElement(objects, backFun, nextFun, last) {
         let input = document.createElement('input')
         input.type = obj.type
         input.id = obj.id
+        input.className = 'input'
         if (obj.default) {
             input.value = obj.default
+            
 
         }
         div.appendChild(text)
@@ -139,6 +140,7 @@ function createHtmlElement(objects, backFun, nextFun, last) {
         back.type = 'button'
         back.value = 'Back'
         back.onclick = eval(backFun)
+        back.className = 'input'
         buttons.appendChild(back)
     }
     if (!last) {
@@ -146,7 +148,7 @@ function createHtmlElement(objects, backFun, nextFun, last) {
         next.type = 'button'
         next.value = "Next"
         next.onclick = eval(nextFun)
-
+        next.className = 'input'
         buttons.appendChild(next)
     }
     else {

@@ -2,7 +2,10 @@
 async function column1(){
     let column1 = document.createElement('div')
     column1.style.width = '25%'
-    column1.style.borderRight = 'solid black'
+    column1.style.borderRight = 'solid #b78846'
+    column1.style.float = 'left'
+    column1.style.position='relative'
+    column1.style.paddingRight = '5px'
     column1.id = 'mainColumn1'
     // div settings 
         // drop down button/menu
@@ -46,48 +49,76 @@ async function column1(){
 
     // div proficiancy
     let proficiancyBonusDiv = document.createElement('div')
-    proficiancyBonusDiv.className = 'proficiancyBox'
+    proficiancyBonusDiv.className = 'box'
+    proficiancyBonusDiv.id = 'proficiancyBonusDiv'
+    let proficiancyBoxInner = document.createElement('id')
+    proficiancyBoxInner.className = 'box-inner'
     let proficiancyBonusTextDiv = document.createElement('div')
-    proficiancyBonusTextDiv.className = 'proficiancyBox'
-    let proficiancyBonusText = document.createElement('h3')
+    // proficiancyBonusTextDiv.className = 'box-inner'
+    let proficiancyBonusText = document.createElement('h5')
     proficiancyBonusText.innerText = 'Proficiancy Bonus'
+    proficiancyBonusText.className = 'profName2'
     proficiancyBonusTextDiv.appendChild(proficiancyBonusText)
 
     let proficiancyBonusValueDiv = document.createElement('div')
-    proficiancyBonusValueDiv.className = 'proficiancyBox'
-    let proficiancyBonusValueText = document.createElement('h3')
-    console.log(character)
-    console.log(character.proficiencyBonus)
-    proficiancyBonusValueText.innerText = character.proficiencyBonus
-    proficiancyBonusValueDiv.appendChild(proficiancyBonusValueText)
+    // proficiancyBonusValueDiv.className = 'proficiancyBox'
+    let proficiancyBonusValueText = document.createElement('input')
+    proficiancyBonusValueText.value = character.proficiencyBonus
+    proficiancyBonusValueText.className = 'inputTextBox2'
 
-    proficiancyBonusDiv.appendChild(proficiancyBonusValueDiv)
-    proficiancyBonusDiv.appendChild(proficiancyBonusTextDiv)
-        
+    proficiancyBoxInner.appendChild(proficiancyBonusValueText)
+
+    proficiancyBoxInner.appendChild(proficiancyBonusValueDiv)
+    proficiancyBoxInner.appendChild(proficiancyBonusTextDiv)
+    proficiancyBonusDiv.appendChild(proficiancyBoxInner)
+    
+
+    // passive wisdom
+    let passivePerceptionDiv = document.createElement('div')
+    passivePerceptionDiv.className = 'box-inner'
+    let passivePerceptionTextDiv = document.createElement('div')
+    passivePerceptionTextDiv.className = 'proficiancyBox'
+    let passivePerceptionText = document.createElement('h5')
+    passivePerceptionText.innerText = 'Passive Wisdom (Perception)'
+    passivePerceptionText.className = 'profName2'
+
+    let passivePerceptionValueDiv = document.createElement('div')
+    passivePerceptionValueDiv.className = 'proficiancyBox'
+    let passivePerceptionValue = document.createElement('input')
+    passivePerceptionValue.value = (character.passivePerception) ? character.passivePerception : 0
+    passivePerceptionValue.className = 'inputTextBox2'
+    passivePerceptionTextDiv.appendChild(passivePerceptionText)
+    passivePerceptionValueDiv.appendChild(passivePerceptionValue)
+
+    passivePerceptionDiv.appendChild(passivePerceptionValueDiv)
+    passivePerceptionDiv.appendChild(passivePerceptionTextDiv)
+
+    proficiancyBonusDiv.appendChild(passivePerceptionDiv)
+
     column1.appendChild(proficiancyBonusDiv)
     column1.appendChild(document.createElement('hr'))
 
     // div inspiration
-    let inBonusDiv = document.createElement('div')
-    inBonusDiv.className = 'proficiancyBox'
-    let inBonusTextD = document.createElement('div')
-    inBonusTextD.className = 'proficiancyBox'
-    let inBonusText = document.createElement('h3')
-    inBonusText.innerText = 'Inspiration Bonus'
+    // let inBonusDiv = document.createElement('div')
+    // inBonusDiv.className = 'proficiancyBox'
+    // let inBonusTextD = document.createElement('div')
+    // inBonusTextD.className = 'proficiancyBox'
+    // let inBonusText = document.createElement('h3')
+    // inBonusText.innerText = 'Inspiration Bonus'
 
-    let inBonusValDiv = document.createElement('div')
-    inBonusValDiv.className = 'proficiancyBox'
-    let inBonusVal = document.createElement('h3')
-    inBonusVal.innerText = (character.inspiration) ? character.inspiration : 0
+    // let inBonusValDiv = document.createElement('div')
+    // inBonusValDiv.className = 'proficiancyBox'
+    // let inBonusVal = document.createElement('h3')
+    // inBonusVal.innerText = (character.inspiration) ? character.inspiration : 0
 
-    inBonusTextD.appendChild(inBonusText)
-    inBonusValDiv.appendChild(inBonusVal)
+    // inBonusTextD.appendChild(inBonusText)
+    // inBonusValDiv.appendChild(inBonusVal)
 
-    inBonusDiv.appendChild(inBonusValDiv)
-    inBonusDiv.appendChild(inBonusTextD)
+    // inBonusDiv.appendChild(inBonusValDiv)
+    // inBonusDiv.appendChild(inBonusTextD)
 
-    column1.appendChild(inBonusDiv)
-    column1.appendChild(document.createElement('hr'))
+    // column1.appendChild(inBonusDiv)
+    // column1.appendChild(document.createElement('hr'))
 
 
     let proficiancies = [
@@ -257,26 +288,7 @@ async function column1(){
     
     let profHtml = await buildProficiancies(proficiancies)
     column1.appendChild(profHtml)
-    // passive wisdom
-    let passivePerceptionDiv = document.createElement('div')
-    passivePerceptionDiv.className = 'proficiancyBox'
-    let passivePerceptionTextDiv = document.createElement('div')
-    passivePerceptionTextDiv.className = 'proficiancyBox'
-    let passivePerceptionText = document.createElement('h3')
-    passivePerceptionText.innerText = 'Passive Wisdom (Perception)'
-
-    let passivePerceptionValueDiv = document.createElement('div')
-    passivePerceptionValueDiv.className = 'proficiancyBox'
-    let passivePerceptionValue = document.createElement('h3')
-    passivePerceptionValue.innerText = (character.passivePerception) ? character.passivePerception : 0
-
-    passivePerceptionTextDiv.appendChild(passivePerceptionText)
-    passivePerceptionValueDiv.appendChild(passivePerceptionValue)
-
-    passivePerceptionDiv.appendChild(passivePerceptionValueDiv)
-    passivePerceptionDiv.appendChild(passivePerceptionTextDiv)
-
-    column1.appendChild(passivePerceptionDiv)
+    
     return column1
 
 }
@@ -288,51 +300,54 @@ async function buildProficiancies(prof){
 
     prof.forEach(p => {
         let div = document.createElement('div')
-        div.className = 'profContainer'
+        div.className = 'box'
 
         let valuesDiv = document.createElement('div')
-        valuesDiv.className = 'profValuesDiv'
+        valuesDiv.className = 'box'
         let valueModDiv = document.createElement('div')
-        valueModDiv.className = 'profModDiv'
-        let valueModText = document.createElement('h5')
-        valueModText.innerText = character[p.mod]
+        valueModDiv.className = 'box-inner2'
+        let valueModText = document.createElement('input')
+        valueModText.value = character[p.mod]
+        valueModText.id = `${p.name}Mod`
+        valueModText.className = 'inputTextBox'
 
         valueModDiv.appendChild(valueModText)
         valuesDiv.appendChild(valueModDiv)
 
         let valueScoreDiv = document.createElement('div')
         valueScoreDiv.className = 'profScoreDiv'
-        let valueScoreText = document.createElement('h5')
-        valueScoreText.innerText = character[p.id]
+        let valueScoreText = document.createElement('input')
+        valueScoreText.value = character[p.id]
+        valueScoreText.id = `${p.name}Value`
+        valueScoreText.className = 'inputTextBox2'
 
         valueScoreDiv.appendChild(valueScoreText)
         valuesDiv.appendChild(valueScoreDiv)
 
         let textDiv = document.createElement('h5')
         textDiv.innerText = p.name
+        textDiv.className = 'profName'
 
         valuesDiv.appendChild(textDiv)
+        valuesDiv.className = 'box-inner'
         div.appendChild(valuesDiv)
 
         // skills list
         let itemsListDiv = document.createElement('div')
         itemsListDiv.className = 'sillsListDiv'
         let ul = document.createElement('ul')
-        console.log(p)
+
         let children = p.children
         children.forEach( child => {
             let li = document.createElement('LI')
             let radio = document.createElement('input')
             radio.type = 'radio'
+            radio.className = 'radioButton'
             let radioId = child.selected
-            console.log(character)
             radio.checked = character[radioId]
             li.appendChild(radio)
             let text = document.createElement('a')
             let valueId = child.id 
-            console.log(valueId)
-            console.log(character[valueId])
-            console.log(`character[${valueId}]`)
             text.innerText = `${character[valueId]} ${child.name}`
             li.appendChild(text)
             ul.appendChild(li)

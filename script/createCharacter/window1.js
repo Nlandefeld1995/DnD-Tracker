@@ -17,13 +17,6 @@ function window1Create() {
             required: true
         },
         {
-            ask: "Character Middle Name",
-            type: "textbox",
-            id: "characterMiddleName",
-            default: character.middleName,
-            required: false
-        },
-        {
             ask: "Character Last Name",
             type: "textbox",
             id: "characterLastName",
@@ -83,10 +76,6 @@ function window1Validate() {
         error = true
         errorText += ` Please enter a first name longer than 3 characters. `
     }
-    // If middle name add to character
-    if (valueById('characterMiddleName')) {
-        character.middleName = valueById('characterMiddleName')
-    }
     // validate last name
     let lastName = valueById('characterLastName')
     if (validateString(lastName, 3)) {
@@ -142,7 +131,6 @@ function window1Validate() {
         valueById('errorArea').appendChild(errors)
     }
     else {
-        console.log(character)
         window2Create()
     }
 }

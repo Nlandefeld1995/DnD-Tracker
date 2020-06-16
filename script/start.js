@@ -1,10 +1,24 @@
 $(document).ready(function () {
+    loadBackground()
     createPopUp()
 })
 // Global Variables
 var globalUserId
 var globalCharacterID
 var globalCharacter = {}
+
+function loadBackground(){
+    // let random = Math.floor(Math.random() * 21) + 1 
+    // let background = `artWork/${random}.jpg`
+    let main = document.getElementById('mainContainer')
+    let img = document.createElement('div')
+    img.id= 'backgroundImg'
+    img.style.backgroundImage = `url('logo.png')`
+    main.appendChild(img)
+    // main.style.backgroundImage = `url('logo.png')`;
+
+}
+
 function createPopUp(){
     // create modal for login screen
     let modal = document.createElement('div')
@@ -24,21 +38,24 @@ function loadPopUp() {
     modal.innerHTML = ''
     // Text for modal screen
     let modalText = document.createElement('h3')
-    modalText.innerText = `Welcome to your D&D tracker. Please login or create new character to continue.`
+    modalText.innerText = `Welcome to your D&D tracker. Please login or create a new account to continue.`
     modal.appendChild(modalText)
     // Buttons for login/create
     let loginCreateDiv = document.createElement('div')
     loginCreateDiv.id = "loginCreateDiv"
+    
     let buttonLogin = document.createElement('input')
     buttonLogin.type = 'button'
     buttonLogin.id = "buttonLogin"
     buttonLogin.value = "Login"
     buttonLogin.onclick = login
+    buttonLogin.className = 'input'
     let buttonCreate = document.createElement('input')
     buttonCreate.type = 'button'
     buttonCreate.id = "buttonCreate"
     buttonCreate.value = "Create New Account"
     buttonCreate.onclick = newAccount
+    buttonCreate.className = 'input'
 
     
     // append buttons
@@ -61,6 +78,7 @@ function cancelButton(){
     button.type = 'button'
     button.value = 'Cancel'
     button.onclick = loadPopUp
+    button.className = 'input'
     return button
 }
 function valueById(id) {

@@ -8,6 +8,7 @@ function login() {
     usernameInput.type = "textbox"
     usernameInput.id = 'loginUsernameInput'
     usernameInput.placeholder = "username"
+    usernameInput.className = 'input'
     // create password boxes
     let passwordText = document.createElement('a')
     passwordText.innerText = "Password: "
@@ -15,6 +16,7 @@ function login() {
     passwordInput.type = 'password'
     passwordInput.id = 'loginPasswordInput'
     passwordInput.placeholder = "password"
+    passwordInput.className = 'input'
     // cancel button
     let cancel = cancelButton()
 
@@ -24,6 +26,7 @@ function login() {
     submit.id = 'loginSubmit'
     submit.value = 'Login'
     submit.onclick = validateLogin
+    submit.className = 'input'
 
     // add area for potential error
     let errorArea = document.createElement('div')
@@ -52,10 +55,8 @@ async function validateLogin() {
     let valid = false
     let errorText = ''
     users = users.results
-    console.log(users)
     for (i = 0; i < users.length; i++) {
         errorText = ''
-        console.log(`${username} == ${users[i].username}`)
         if (username == users[i].username) {
             if (password == users[i].password) {
                 valid = true
