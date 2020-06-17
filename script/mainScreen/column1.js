@@ -122,7 +122,9 @@ async function column1(){
     // inBonusDiv.appendChild(inBonusTextD)
 
     // column1.appendChild(inBonusDiv)
+
     //
+
 
 
     let proficiancies = [
