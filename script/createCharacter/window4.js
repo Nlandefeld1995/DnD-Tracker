@@ -38,7 +38,7 @@ function window4Create() {
             required: false
         }
     ]
-    let html = createHtmlElement(moneyCounts, 'window3Create', 'window4Validate', false)
+    let html = createHtmlElement(moneyCounts, 'window3Create', 'window4Validate', true)
     modal.appendChild(html)
 }
 function window4Validate() {

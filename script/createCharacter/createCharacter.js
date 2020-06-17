@@ -155,6 +155,7 @@ function createHtmlElement(objects, backFun, nextFun, last) {
         let save = document.createElement('input')
         save.type = 'button'
         save.value = 'Save'
+        save.className = 'input'
         save.onclick = saveCharacter
         buttons.appendChild(save)
     }
