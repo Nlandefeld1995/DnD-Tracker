@@ -3,6 +3,7 @@ async function column1(){
     let column1 = document.createElement('div')
     column1.style.width = '25%'
     column1.style.borderRight = 'solid #b78846'
+    column1.style.height='100vh'
     column1.style.float = 'left'
     column1.style.position='relative'
     column1.style.paddingRight = '5px'
@@ -31,6 +32,8 @@ async function column1(){
     deleteCharacter.innerText = 'Delete Character'
     let setDefaultCharacter = document.createElement('a')
     setDefaultCharacter.innerText = 'Set Primary Character'
+    let setLayout = document.createElement('a')
+    setLayout.innerText = 'Edit Navigation Buttons'
     let logout = document.createElement('a')
     logout.innerText = 'Logout'
 
@@ -38,13 +41,14 @@ async function column1(){
     settingsDropContentDiv.appendChild(addCharacter)
     settingsDropContentDiv.appendChild(deleteCharacter)
     settingsDropContentDiv.appendChild(setDefaultCharacter)
+    settingsDropContentDiv.appendChild(setLayout)
     settingsDropContentDiv.appendChild(logout)
     settingsDrop.appendChild(settingsDropButton)
     settingsDrop.appendChild(settingsDropContentDiv)
     settingsDiv.appendChild(settingsDrop)
 
     column1.appendChild(settingsDiv)
-    column1.appendChild(document.createElement('hr'))
+
 
 
     // div proficiancy
@@ -96,7 +100,7 @@ async function column1(){
     proficiancyBonusDiv.appendChild(passivePerceptionDiv)
 
     column1.appendChild(proficiancyBonusDiv)
-    column1.appendChild(document.createElement('hr'))
+
 
     // div inspiration
     // let inBonusDiv = document.createElement('div')
@@ -118,7 +122,7 @@ async function column1(){
     // inBonusDiv.appendChild(inBonusTextD)
 
     // column1.appendChild(inBonusDiv)
-    // column1.appendChild(document.createElement('hr'))
+    //
 
 
     let proficiancies = [
