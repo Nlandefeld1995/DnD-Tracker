@@ -1,6 +1,7 @@
 async function column2() {
     let column2 = document.createElement('div')
     column2.style.width = '50%'
+
     column2.style.borderRight = 'solid #b78846'
     column2.style.float = 'left'
     column2.style.height='100vh'
@@ -11,6 +12,7 @@ async function column2() {
     column2.id = 'mainColumn2'
     let playerinformation = await createPlayerInfo()
     column2.appendChild(playerinformation)
+<<<<<<< HEAD
     
     let navigation = await createNavBar()
     column2.appendChild(navigation)
@@ -22,6 +24,14 @@ async function column2() {
 }
 
 async function createPlayerInfo() {
+=======
+
+    return column2
+}
+
+async function createPlayerInfo(){
+
+>>>>>>> f9af0f5e8c1d77bade07cc13422e552dd113b350
     let div = document.createElement('div')
     div.id = 'playerInfoDiv'
 
@@ -141,7 +151,12 @@ async function createPlayerInfo() {
     return div
 }
 
+<<<<<<< HEAD
 async function createNavBar() {
+=======
+async function createNavBar(){
+
+>>>>>>> f9af0f5e8c1d77bade07cc13422e552dd113b350
     let navigation = [
         {
             label: "Common",
@@ -242,6 +257,7 @@ async function createNavBar() {
             ]
         }
     ]
+<<<<<<< HEAD
 
     let navDiv = document.createElement('div')
     navDiv.id='navigationDiv'
@@ -273,3 +289,5 @@ async function createNavBar() {
     return navDiv
 
 }
+=======
+>>>>>>> f9af0f5e8c1d77bade07cc13422e552dd113b350
