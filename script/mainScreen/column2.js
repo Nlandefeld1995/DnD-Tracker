@@ -1,6 +1,6 @@
 async function column2() {
     let column2 = document.createElement('div')
-    column2.style.width = '50%'
+    column2.style.width = '60vw'
 
     column2.style.borderRight = 'solid #b78846'
     column2.style.float = 'left'
@@ -9,7 +9,7 @@ async function column2() {
     column2.style.paddingRight = '5px'
     column2.style.position = 'absolute'
 
-    column2.style.left = '25%'
+    column2.style.left = '20%'
     column2.style.paddingLeft = '5px'
     column2.id = 'mainColumn2'
     let playerinformation = await createPlayerInfo()

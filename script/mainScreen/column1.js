@@ -1,7 +1,7 @@
 
 async function column1(){
     let column1 = document.createElement('div')
-    column1.style.width = '25%'
+    column1.style.width = '20vw'
     column1.style.borderRight = 'solid #b78846'
     column1.style.height='100vh'
     column1.style.float = 'left'
@@ -340,7 +340,7 @@ async function buildProficiancies(prof){
 
         // skills list
         let itemsListDiv = document.createElement('div')
-        itemsListDiv.className = 'sillsListDiv'
+        itemsListDiv.className = 'skillsListDiv'
         let ul = document.createElement('ul')
 
         let children = p.children

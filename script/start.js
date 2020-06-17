@@ -1,6 +1,11 @@
 $(document).ready(function () {
+    loader(true)
     loadBackground()
-    createPopUp()
+    setTimeout(function(){
+        
+        createPopUp()
+    },1000)
+    
 })
 // Global Variables
 var globalUserId
@@ -62,7 +67,7 @@ function loadPopUp() {
     loginCreateDiv.appendChild(buttonLogin)
     loginCreateDiv.appendChild(buttonCreate)
     modal.appendChild(loginCreateDiv)
-
+    loader(false)
     
 }
 
@@ -103,4 +108,16 @@ function validateWholeNumber(num) {
     }
     else { valid = false }
     return valid
+}
+
+function loader(state){
+    let loader = document.getElementById('loaderIcon')
+
+    if(state){
+        loader.style.display = 'block'
+        console.log('turned loader on')
+    }else{
+        loader.style.display = 'none'
+        console.log('turned loader off')
+    }
 }
