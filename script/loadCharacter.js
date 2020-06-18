@@ -3,6 +3,7 @@ async function loaduser(){
     modal.style.display = 'none'
     let user = await dbGetUserById(globalUserId)
     let characterToLoad = user.characters[0]
+    globalCharacterID = characterToLoad
     character = await dbGetCharacterbyId(characterToLoad)
     loadMainScreen()
     // get from db list of characters. Load first character

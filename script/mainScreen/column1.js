@@ -56,7 +56,7 @@ async function column1(){
     proficiancyBonusDiv.className = 'box'
     proficiancyBonusDiv.id = 'proficiancyBonusDiv'
     let proficiancyBoxInner = document.createElement('id')
-    proficiancyBoxInner.className = 'box-inner'
+    proficiancyBoxInner.className = 'box-inner3'
     let proficiancyBonusTextDiv = document.createElement('div')
     // proficiancyBonusTextDiv.className = 'box-inner'
     let proficiancyBonusText = document.createElement('h5')
@@ -79,7 +79,7 @@ async function column1(){
 
     // passive wisdom
     let passivePerceptionDiv = document.createElement('div')
-    passivePerceptionDiv.className = 'box-inner'
+    passivePerceptionDiv.className = 'box-inner3'
     let passivePerceptionTextDiv = document.createElement('div')
     passivePerceptionTextDiv.className = 'proficiancyBox'
     let passivePerceptionText = document.createElement('h5')
@@ -314,6 +314,7 @@ async function buildProficiancies(prof){
         valueModDiv.className = 'box-inner2'
         let valueModText = document.createElement('input')
         valueModText.value = character[p.mod]
+        valueModText.readOnly = true
         valueModText.id = `${p.name}Mod`
         valueModText.className = 'inputTextBox'
 
@@ -324,6 +325,7 @@ async function buildProficiancies(prof){
         valueScoreDiv.className = 'profScoreDiv'
         let valueScoreText = document.createElement('input')
         valueScoreText.value = character[p.id]
+        
         valueScoreText.id = `${p.name}Value`
         valueScoreText.className = 'inputTextBox2'
 

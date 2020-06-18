@@ -159,12 +159,6 @@ async function createNavBar() {
                     shown: true
                 },
                 {
-                    label: "Proficiencies",
-                    function: '',
-                    id: 'navProficiencies',
-                    shown: true
-                },
-                {
                     label: "Money",
                     function: '',
                     id: 'navMoney',
@@ -212,7 +206,7 @@ async function createNavBar() {
                 },
                 {
                     label: "Add A Bag (+)",
-                    function: "",
+                    function: "addBag()",
                     id: "navAddBag",
                     shown: true
                 }
@@ -268,7 +262,7 @@ async function createNavBar() {
             if(child.shown){
                 let c = document.createElement('a')
                 c.innerText = child.label
-                c.onclick = `${child.function}`
+                c.setAttribute('onclick', child.function)
                 contentDiv.appendChild(c)
             }
             

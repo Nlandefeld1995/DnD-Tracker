@@ -45,6 +45,53 @@ function dbCreateUser(data) {
 
     return response
 }
+function dbCreateBag(data) {
+
+    let url = `https://parseapi.back4app.com/classes/bags`
+    let response = $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        headers: {
+            'X-Parse-Application-Id': 'uB4JSOphROFz8TA3F9qtPX3w5EL7zoaX5ZuZ5eD4',
+            'X-Parse-REST-API-Key': 'rI8BHZJB9swVXSwyYI0n95WG1LeCZ7ojfDMv7RsW',
+            'Content-Type': 'application/json'
+        }
+    })
+        .done(response => {
+            return response
+        })
+        .fail(error => {
+            console.error(error)
+            return error
+        })
+
+    return response
+}
+function dbCreateInventoryItem(data) {
+
+    let url = `https://parseapi.back4app.com/classes/inventory`
+    let response = $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        headers: {
+            'X-Parse-Application-Id': 'uB4JSOphROFz8TA3F9qtPX3w5EL7zoaX5ZuZ5eD4',
+            'X-Parse-REST-API-Key': 'rI8BHZJB9swVXSwyYI0n95WG1LeCZ7ojfDMv7RsW',
+            'Content-Type': 'application/json'
+        }
+    })
+        .done(response => {
+            return response
+        })
+        .fail(error => {
+            console.error(error)
+            return error
+        })
+
+    return response
+}
+
 // get
 function dbGetUsers() {
     let url = `https://parseapi.back4app.com/classes/users`
@@ -92,6 +139,30 @@ function dbGetCharacters() {
 
     return response
 }
+function dbGetInventory() {
+
+    let url = `https://parseapi.back4app.com/classes/inventory`
+    let response = $.ajax({
+        type: "GET",
+        url: url,
+        headers: {
+            'X-Parse-Application-Id': 'uB4JSOphROFz8TA3F9qtPX3w5EL7zoaX5ZuZ5eD4',
+            'X-Parse-REST-API-Key': 'rI8BHZJB9swVXSwyYI0n95WG1LeCZ7ojfDMv7RsW',
+            'Content-Type': 'application/json'
+        }
+    })
+        .done(response => {
+            return response
+        })
+        .fail(error => {
+            console.error(error)
+            return error
+
+        })
+
+    return response
+}
+
 // Get by id
 function dbGetUserById(id) {
 
@@ -171,6 +242,56 @@ function dbUpdateCharacter(id, data) {
         type: "PUT",
         url: url,
         data: data,
+        headers: {
+            'X-Parse-Application-Id': 'uB4JSOphROFz8TA3F9qtPX3w5EL7zoaX5ZuZ5eD4',
+            'X-Parse-REST-API-Key': 'rI8BHZJB9swVXSwyYI0n95WG1LeCZ7ojfDMv7RsW',
+            'Content-Type': 'application/json'
+        }
+    })
+        .done(response => {
+            return response
+        })
+        .fail(error => {
+            console.error(error)
+            return error
+
+        })
+
+    return response
+}
+function dbUpdateInventory(id, data) {
+
+    let url = `https://parseapi.back4app.com/classes/inventory/${id}`
+    let response = $.ajax({
+        type: "PUT",
+        url: url,
+        data: data,
+        headers: {
+            'X-Parse-Application-Id': 'uB4JSOphROFz8TA3F9qtPX3w5EL7zoaX5ZuZ5eD4',
+            'X-Parse-REST-API-Key': 'rI8BHZJB9swVXSwyYI0n95WG1LeCZ7ojfDMv7RsW',
+            'Content-Type': 'application/json'
+        }
+    })
+        .done(response => {
+            return response
+        })
+        .fail(error => {
+            console.error(error)
+            return error
+
+        })
+
+    return response
+}
+
+
+//  Delete
+function dbDeleteInventory(id) {
+
+    let url = `https://parseapi.back4app.com/classes/inventory/${id}`
+    let response = $.ajax({
+        type: "DELETE",
+        url: url,
         headers: {
             'X-Parse-Application-Id': 'uB4JSOphROFz8TA3F9qtPX3w5EL7zoaX5ZuZ5eD4',
             'X-Parse-REST-API-Key': 'rI8BHZJB9swVXSwyYI0n95WG1LeCZ7ojfDMv7RsW',
