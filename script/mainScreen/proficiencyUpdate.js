@@ -44,3 +44,4 @@ async function updateAllProficiencies() {
         console.log('failed to update')
     }
 }
+// new update
