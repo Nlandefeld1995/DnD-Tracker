@@ -67,6 +67,8 @@ async function column1(){
     let proficiancyBonusValueDiv = document.createElement('div')
     // proficiancyBonusValueDiv.className = 'proficiancyBox'
     let proficiancyBonusValueText = document.createElement('input')
+    proficiancyBonusValueText.id = 'proficiencyValueId'
+    proficiancyBonusValueText.setAttribute('onchange', 'updateProficiencyBonus()')
     proficiancyBonusValueText.value = character.proficiencyBonus
     proficiancyBonusValueText.className = 'inputTextBox2'
 
