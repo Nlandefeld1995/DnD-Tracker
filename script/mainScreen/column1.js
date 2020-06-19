@@ -36,6 +36,7 @@ async function column1(){
     setLayout.innerText = 'Edit Navigation Buttons'
     let logout = document.createElement('a')
     logout.innerText = 'Logout'
+    logout.setAttribute('onclick', 'start()')
 
     settingsDropContentDiv.appendChild(loadCharacter)
     settingsDropContentDiv.appendChild(addCharacter)

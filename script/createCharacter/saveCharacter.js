@@ -18,9 +18,24 @@ async function saveCharacter() {
             characters: user.characters
         }
         let updateUser = await dbUpdateUser(globalUserId, JSON.stringify(newUser))
+        let updateBagsWithID = await updateBags()
+
         loaduser()
     }
     else {
         console.log("error saving")
     }
+}
+
+async function updateBags(){
+    let success
+    for(i=0;i<bagsToUpdate.length;i++){
+        let bagId = bagsToUpdate[i];
+        let data = {
+            characterId: globalCharacterID,
+        }
+        data = JSON.stringify(data)
+         success = await dbUpdateBag(bagId, data)
+    }
+    return success
 }

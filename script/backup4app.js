@@ -162,6 +162,29 @@ function dbGetInventory() {
 
     return response
 }
+function dbGetBags() {
+
+    let url = `https://parseapi.back4app.com/classes/bags`
+    let response = $.ajax({
+        type: "GET",
+        url: url,
+        headers: {
+            'X-Parse-Application-Id': 'uB4JSOphROFz8TA3F9qtPX3w5EL7zoaX5ZuZ5eD4',
+            'X-Parse-REST-API-Key': 'rI8BHZJB9swVXSwyYI0n95WG1LeCZ7ojfDMv7RsW',
+            'Content-Type': 'application/json'
+        }
+    })
+        .done(response => {
+            return response
+        })
+        .fail(error => {
+            console.error(error)
+            return error
+
+        })
+
+    return response
+}
 
 // Get by id
 function dbGetUserById(id) {
@@ -190,6 +213,29 @@ function dbGetUserById(id) {
 function dbGetCharacterbyId(id) {
 
     let url = `https://parseapi.back4app.com/classes/characters/${id}`
+    let response = $.ajax({
+        type: "GET",
+        url: url,
+        headers: {
+            'X-Parse-Application-Id': 'uB4JSOphROFz8TA3F9qtPX3w5EL7zoaX5ZuZ5eD4',
+            'X-Parse-REST-API-Key': 'rI8BHZJB9swVXSwyYI0n95WG1LeCZ7ojfDMv7RsW',
+            'Content-Type': 'application/json'
+        }
+    })
+        .done(response => {
+            return response
+        })
+        .fail(error => {
+            console.error(error)
+            return error
+
+        })
+
+    return response
+}
+function dbGetBagById(id) {
+
+    let url = `https://parseapi.back4app.com/classes/bags/${id}`
     let response = $.ajax({
         type: "GET",
         url: url,
@@ -284,6 +330,31 @@ function dbUpdateInventory(id, data) {
     return response
 }
 
+
+function dbUpdateBag(id, data) {
+
+    let url = `https://parseapi.back4app.com/classes/bags/${id}`
+    let response = $.ajax({
+        type: "PUT",
+        url: url,
+        data: data,
+        headers: {
+            'X-Parse-Application-Id': 'uB4JSOphROFz8TA3F9qtPX3w5EL7zoaX5ZuZ5eD4',
+            'X-Parse-REST-API-Key': 'rI8BHZJB9swVXSwyYI0n95WG1LeCZ7ojfDMv7RsW',
+            'Content-Type': 'application/json'
+        }
+    })
+        .done(response => {
+            return response
+        })
+        .fail(error => {
+            console.error(error)
+            return error
+
+        })
+
+    return response
+}
 
 //  Delete
 function dbDeleteInventory(id) {

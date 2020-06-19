@@ -1,27 +1,34 @@
-$(document).ready(function () {
-    loader(true)
-    loadBackground()
-    setTimeout(function(){
-        
-        createPopUp()
-    },1000)
-    
-})
-// Global Variables
+
 var globalUserId
 var globalCharacterID
 var globalCharacter = {}
+$(document).ready(function () {
+    start()
+})
+function start(){
+    loader(true)
+    let main = document.getElementById('mainContainer')
+    while (main.lastChild.id !== 'loader') {
+        main.removeChild(main.lastChild);
+    }
+    loadBackground()
+    setTimeout(function(){
+        character = {}
+        globalUserId
+         globalCharacterID
+        globalCharacter = {}
+        createPopUp()
+    },1000)
+}
+// Global Variables
+
 
 function loadBackground(){
-    // let random = Math.floor(Math.random() * 21) + 1 
-    // let background = `artWork/${random}.jpg`
     let main = document.getElementById('mainContainer')
     let img = document.createElement('div')
     img.id= 'backgroundImg'
     img.style.backgroundImage = `url('logo.png')`
     main.appendChild(img)
-    // main.style.backgroundImage = `url('logo.png')`;
-
 }
 
 function createPopUp(){

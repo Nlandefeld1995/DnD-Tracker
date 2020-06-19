@@ -10,17 +10,10 @@ function window1Create() {
             required: true
         },
         {
-            ask: "Character First Name",
+            ask: "Character Name",
             type: "textbox",
-            id: "characterFirstName",
-            default: character.firstName,
-            required: true
-        },
-        {
-            ask: "Character Last Name",
-            type: "textbox",
-            id: "characterLastName",
-            default: character.lastName,
+            id: "characterName",
+            default: character.Name,
             required: true
         },
         {
@@ -38,13 +31,6 @@ function window1Create() {
             required: true
         },
         {
-            ask: "Level",
-            type: "textbox",
-            id: "characterLevel",
-            default: character.level,
-            required: true
-        },
-        {
             ask: "Experience Points",
             type: "textbox",
             id: "characterXp",
@@ -55,7 +41,7 @@ function window1Create() {
     let html = createHtmlElement(characterInfo, '', 'window1Validate', false)
     modal.appendChild(html)
 }
-function window1Validate() {
+async function window1Validate() {
     let error = false
     let errorText = ''
     // Validate player name
@@ -68,23 +54,15 @@ function window1Validate() {
         errorText += ` Please enter a valid player name. `
     }
     // validate first name
-    let firstName = valueById('characterFirstName')
-    if (validateString(firstName, 3)) {
-        character.firstName = firstName
+    let name = valueById('characterName')
+    if (validateString(name, 3)) {
+        character.name = name
     }
     else {
         error = true
-        errorText += ` Please enter a first name longer than 3 characters. `
+        errorText += ` Please enter a  name longer than 3 characters. `
     }
-    // validate last name
-    let lastName = valueById('characterLastName')
-    if (validateString(lastName, 3)) {
-        character.lastName = lastName
-    }
-    else {
-        error = true
-        errorText += ` Please enter a last name longer than 3 characters.`
-    }
+    
     // validate Class
     let characterClass = valueById('characterClass')
     if (validateClass(characterClass)) {
@@ -103,19 +81,20 @@ function window1Validate() {
         error = true
         errorText += ` Please enter a valid Race. `
     }
-    // Validate level
-    let level = valueById('characterLevel')
-    if (validateWholeNumber(level) && parseInt(level) >= 0) {
-        character.level = parseInt(level)
-    }
-    else {
-        error = true
-        errorText += ` Please enter a valid whole number 0 or higher as the Level. `
-    }
+    // // Validate level
+    // let level = valueById('characterLevel')
+    // if (validateWholeNumber(level) && parseInt(level) >= 0) {
+    //     character.level = parseInt(level)
+    // }
+    // else {
+    //     error = true
+    //     errorText += ` Please enter a valid whole number 0 or higher as the Level. `
+    // }
     // Validate XP
     let xp = valueById('characterXp')
     if (validateWholeNumber(xp) && parseInt(xp) >= 0) {
         character.xp = parseInt(xp)
+        character.level = await getLevelByXp(parseInt(xp))
     }
     else {
         error = true

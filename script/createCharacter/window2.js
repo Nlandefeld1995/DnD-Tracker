@@ -3,13 +3,6 @@ function window2Create() {
     modal.innerHTML = ''
     let proficiencies = [
         {
-            ask: "Proficiency Bonus",
-            type: "textbox",
-            id: "proficiencyBonus",
-            default: character.proficiencyBonus,
-            required: true
-        },
-        {
             ask: "Strength score",
             type: "textbox",
             id: "strengthScore",
@@ -219,27 +212,19 @@ function window2Create() {
             id: "persuasion",
             default: character.persuasion,
             required: false
-        },
-        {
-            ask: "Passive Wisdom (Perception) Score",
-            type: "textbox",
-            id: "passivePerception",
-            default: character.passivePerception,
-            required: true
         }
 
     ]
     let html = createHtmlElement(proficiencies, 'window1Create', 'window2Validate', false)
     modal.appendChild(html)
 }
-function window2Validate() {
+async function window2Validate() {
     let error = false
     let errorText = ''
     // validate proficiency bonus
-    let proficiencyBonus = valueById('proficiencyBonus')
-    if (validateWholeNumber(parseInt(proficiencyBonus)) && parseInt(proficiencyBonus) >= 0) {
-        character.proficiencyBonus = parseInt(proficiencyBonus)
-    } else { error = true; errorText += ` Please enter a valid proficiency Bonus` }
+    
+        character.proficiencyBonus = await getPBonusByLevel(character.level)
+    
     // create blank record for inspiration
     character.inspiration = 0
     //  validate strength score
@@ -305,7 +290,7 @@ function window2Validate() {
         errorText += `Please enter a valid Charisma score`
     }
     // passive wisdom
-    character.passivePerception = parseInt(valueById('passivePerception'))
+    character.passivePerception = (10 + character.wisdomMod)
     // Get other proficiencies
     let proficiencies = [
         {

@@ -5,7 +5,7 @@ async function column2() {
     column2.style.borderRight = 'solid #b78846'
     column2.style.float = 'left'
 
-    column2.style.height='100vh'
+    column2.style.height = '100vh'
     column2.style.paddingRight = '5px'
     column2.style.position = 'absolute'
 
@@ -15,23 +15,23 @@ async function column2() {
     let playerinformation = await createPlayerInfo()
     column2.appendChild(playerinformation)
 
-    
+
     let navigation = await createNavBar()
     column2.appendChild(navigation)
-    
+
     let mainDivArea = document.createElement('div')
-    mainDivArea.id='navMain'
+    mainDivArea.id = 'navMain'
     column2.appendChild(mainDivArea)
     return column2
 }
 
 
-async function createPlayerInfo(){
+async function createPlayerInfo() {
     let div = document.createElement('div')
     div.id = 'playerInfoDiv'
 
     let divRow1 = document.createElement('div')
-    divRow1.id='playerInfoRow1'
+    divRow1.id = 'playerInfoRow1'
 
     let nameDiv = document.createElement('div')
     nameDiv.id = 'playerInfoNameDiv'
@@ -39,7 +39,7 @@ async function createPlayerInfo(){
     let nameText = document.createElement('h5')
     nameText.innerText = 'Name:'
     let nameValue = document.createElement('input')
-    nameValue.value = `${character.firstName} ${character.lastName}`
+    nameValue.value = character.name
     nameValue.readOnly = true
     nameValue.className = 'inputTextBox3'
     nameDiv.appendChild(nameText)
@@ -63,7 +63,7 @@ async function createPlayerInfo(){
     let classText = document.createElement('h5')
     classText.innerText = 'Class:'
     let classValue = document.createElement('input')
-    classValue.value = character.class 
+    classValue.value = character.class
     classValue.readOnly = true
     classValue.className = 'inputTextBox3'
     classDiv.appendChild(classText)
@@ -74,9 +74,9 @@ async function createPlayerInfo(){
     divRow1.appendChild(classDiv)
     divRow1.appendChild(await createVl())
     divRow1.appendChild(raceDiv)
-    
+
     let divRow2 = document.createElement('div')
-    divRow2.id='playerInfoRow2'
+    divRow2.id = 'playerInfoRow2'
 
     let backGroundDiv = document.createElement('div')
     backGroundDiv.id = 'playerInfoBackgroundDiv'
@@ -108,7 +108,7 @@ async function createPlayerInfo(){
     let levelText = document.createElement('h5')
     levelText.innerText = 'Level:'
     let levelValue = document.createElement('input')
-    levelValue.value = character.level 
+    levelValue.value = character.level
     // levelValue.readOnly = false
     levelValue.className = 'inputTextBox3'
     levelDiv.appendChild(levelText)
@@ -119,9 +119,9 @@ async function createPlayerInfo(){
     xpDiv.className = 'playerInfoRow'
     let xpText = document.createElement('h5')
     xpText.innerText = 'XP:'
-    
+
     let xpValue = document.createElement('input')
-    xpValue.value = character.xp 
+    xpValue.value = character.xp
     // xpValue.readOnly = false
     xpValue.className = 'inputTextBox3'
     xpDiv.appendChild(xpText)
@@ -137,17 +137,52 @@ async function createPlayerInfo(){
 
     div.appendChild(divRow1)
     div.appendChild(divRow2)
-    function createVl(){
+    function createVl() {
         let vl = document.createElement('div')
         vl.className = 'vl'
         return vl
     }
-    return div 
+    return div
 }
 
 
 
 async function createNavBar() {
+    let bags = await dbGetBags()
+    console.log(bags)
+    let bagList = []
+    let inventoryBag
+    let armorBag
+    let weaponsBag
+    let attunements = []
+    bags = bags.results
+    for (i = 0; i < bags.length; i++) {
+        console.log(bags)
+        let bag = bags[i]
+        console.log(`if(${bag.name} == 'Inventory' && ${bag.characterId} == ${globalCharacterID})`)
+        if (bag.name == 'Inventory' && bag.characterId == globalCharacterID) {
+            inventoryBag = bag.objectId
+        }
+        else if (bag.name == 'Armor' && bag.characterId == globalCharacterID) {
+            armorBag = bag.objectId
+        }
+        else if (bag.name == 'Weapons' && bag.characterId == globalCharacterID) {
+            weaponsBag = bag.objectId
+        }
+        else if (bag.characterId == globalCharacterID) {
+            bagList.push(bag)
+        }
+    }
+    let inventory = await dbGetInventory()
+
+    for (i = 0; i < inventory.length; i++) {
+        let inv = inventory[i]
+        if (globalCharacterID == inv.characterId && inv.attunement) {
+            attunements.push(inv)
+        }
+    }
+
+
     let navigation = [
         {
             label: "Common",
@@ -182,32 +217,20 @@ async function createNavBar() {
             children: [
                 {
                     label: "Inventory",
-                    function: "",
+                    function: `loadBag('${inventoryBag}')`,
                     id: "navInventory",
                     shown: true
                 },
                 {
                     label: "Armor",
-                    function: "",
+                    function: `loadBag('${armorBag}')`,
                     id: "navArmor",
                     shown: true
                 },
                 {
                     label: "Weapons",
-                    function: "",
+                    function: `loadBag('${weaponsBag}')`,
                     id: "navWeapons",
-                    shown: true
-                },
-                {
-                    label: "Attunments",
-                    function: "",
-                    id: "navAttunments",
-                    shown: true
-                },
-                {
-                    label: "Add A Bag (+)",
-                    function: "addBag()",
-                    id: "navAddBag",
                     shown: true
                 }
             ]
@@ -242,9 +265,34 @@ async function createNavBar() {
             ]
         }
     ]
+    let invList = (navigation[2]).children
+    console.log(bagList)
+    for (i = 0; i < bagList.length; i++) {
+        let bag = bagList[i]
+        let unknownBag =
+        {
+            label: bag.name,
+            function: `loadBag('${bag.objectId}')`,
+            id: `nav${bag.name}`,
+            shown: true
+        }
+        
+        invList.push(unknownBag)
+    }
+    invList.push(await navAddNewBag())
+    function navAddNewBag() {
+        let newBag =
+        {
+            label: "Add A Bag (+)",
+            function: "addBag()",
+            id: "navAddBag",
+            shown: true
+        }
+        return newBag
+    }
 
     let navDiv = document.createElement('div')
-    navDiv.id='navigationDiv'
+    navDiv.id = 'navigationDiv'
 
     navigation.forEach(main => {
         let dropDiv = document.createElement('div')
@@ -259,13 +307,13 @@ async function createNavBar() {
 
         let children = main.children
         children.forEach(child => {
-            if(child.shown){
+            if (child.shown) {
                 let c = document.createElement('a')
                 c.innerText = child.label
                 c.setAttribute('onclick', child.function)
                 contentDiv.appendChild(c)
             }
-            
+
         });
         dropDiv.appendChild(contentDiv)
         navDiv.appendChild(dropDiv)
