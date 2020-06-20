@@ -12,7 +12,7 @@ function addBag() {
     nameInput.placeholder = 'New Bag Name'
     let nameSubmit = document.createElement('button')
     nameSubmit.innerText = 'Submit'
-    nameSubmit.setAttribute('onclick',`saveNewBag()`)
+    nameSubmit.setAttribute('onclick', `saveNewBag()`)
     nameSubmit.className = 'input'
 
     main.appendChild(name)
@@ -32,7 +32,7 @@ async function saveNewBag() {
     data = JSON.stringify(data)
     let bagId = await dbCreateBag(data)
     bagId = bagId.objectId
-    let inventory = await createInventoryTable(bagId)
+    let inventory = await createInventoryTable(bagId, bag)
     let main = document.getElementById('navMain')
     main.innerHTML = ''
     main.appendChild(inventory)
@@ -42,14 +42,14 @@ async function saveNewBag() {
     jQuery('#navigationDiv').replaceWith(newNav);
 }
 
-async function loadBag(bagId){
+async function loadBag(bagId, type) {
     let main = document.getElementById('navMain')
     main.innerHTML = ''
-    let bag = await createInventoryTable(bagId)
+    let bag = await createInventoryTable(bagId, type)
     main.appendChild(bag)
 }
 
-async function createInventoryTable(bagId){
+async function createInventoryTable(bagId, type) {
     let main = document.createElement('div')
     let title = document.createElement('h1')
     let bagName = await dbGetBagById(bagId)
@@ -72,9 +72,29 @@ async function createInventoryTable(bagId){
     let headerTable = document.createElement('table')
     let newHeaderRow = document.createElement('tr')
     headerTable.className = 'tableHeader'
+
+    let qtyHeader = document.createElement('th')
+    qtyHeader.innerText = 'Qty'
+    qtyHeader.className = 'qtyColumn'
+    newHeaderRow.appendChild(qtyHeader)
+
     let itemHeader = document.createElement('th')
     itemHeader.innerText = 'Item'
     itemHeader.className = 'itemColumn'
+    newHeaderRow.appendChild(itemHeader)
+
+    if (type == 'Armor') {
+        let unknownColumnHeader = document.createElement('th')
+        unknownColumnHeader.innerText = 'Armor Class (AC)'
+        unknownColumnHeader.className = 'unknownColumn'
+        newHeaderRow.appendChild(unknownColumnHeader)
+    } else if (type == 'Weapons') {
+        let unknownColumnHeader = document.createElement('th')
+        unknownColumnHeader.innerText = 'Damage'
+        unknownColumnHeader.className = 'unknownColumn'
+        newHeaderRow.appendChild(unknownColumnHeader)
+    }
+
     let notesHeader = document.createElement('th')
     notesHeader.innerText = 'Notes'
     notesHeader.className = 'notesColumn'
@@ -83,7 +103,10 @@ async function createInventoryTable(bagId){
     attunedItemHeader.className = 'attunementColumn'
     let removeHeader = document.createElement('th')
     removeHeader.style.display = 'none'
-    newHeaderRow.appendChild(itemHeader)
+
+
+
+
     newHeaderRow.appendChild(notesHeader)
     newHeaderRow.appendChild(attunedItemHeader)
     newHeaderRow.appendChild(removeHeader)
@@ -95,89 +118,124 @@ async function createInventoryTable(bagId){
     itemsTable.className = 'tableValues'
     console.log(inventory)
     console.log(inventory.length)
-    if(inventory.length == 0 ){
-        addRow(bagId)
-    }
-    else {
-    inventory.forEach(item => {
-        let newRow = document.createElement('tr')
-        newRow.id = item.objectId
-        let title = document.createElement('td')
-        let titleValue = document.createElement('input')
-        titleValue.value = item.title
-        title.className = 'itemColumn'
-        titleValue.id = `title${item.objectId}`
-        titleValue.setAttribute('onchange', `updateInventory('${item.objectId}')`)
-        title.appendChild(titleValue)
+    if (inventory.length == 0) {
+        addRow(bagId, type)
+    } else {
+        inventory.forEach(item => {
+            let newRow = document.createElement('tr')
+            newRow.id = item.objectId
 
-        let notes = document.createElement('td')
-        notes.className = 'notesColumn'
-        let notesValue = document.createElement('input')
-        notesValue.value = item.notes
+            let qty = document.createElement('td')
+            let qtyValue = document.createElement('input')
+            qtyValue.value = item.qty
+            qty.className = 'qtyColumn'
+            qtyValue.id = `qty${item.objectId}`
+            qtyValue.setAttribute('onchange', `updateInventory('${item.objectId}')`)
+            qty.appendChild(qtyValue)
+            newRow.appendChild(qty)
 
-        
-        
-        notesValue.id = `notes${item.objectId}`
-        notesValue.setAttribute('onchange',`updateInventory('${item.objectId}')`)
-        notes.appendChild(notesValue)
+            let title = document.createElement('td')
+            let titleValue = document.createElement('input')
+            titleValue.value = item.title
+            title.className = 'itemColumn'
+            titleValue.id = `title${item.objectId}`
+            titleValue.setAttribute('onchange', `updateInventory('${item.objectId}')`)
+            title.appendChild(titleValue)
+            newRow.appendChild(title)
 
-        let attunement = document.createElement('td')
-        attunement.className = 'attunementColumn'
-        let attunementValue = document.createElement('input')
-        attunementValue.type = 'checkbox'
-        attunementValue.checked = (item.attunement) ? (item.attunement) : false
+            if (type == 'Armor') {
+                let unknown = document.createElement('td')
+                let unknownValue = document.createElement('input')
+                unknownValue.value = item.ac
+                unknown.className = 'unknownColumn'
+                unknownValue.id = `ac${item.objectId}`
+                unknown.appendChild(unknownValue)
+                newRow.appendChild(unknown)
+            } else if (type == 'Weapons') {
+                let unknown = document.createElement('td')
+                let unknownValue = document.createElement('input')
+                unknownValue.value = item.damage
+                unknown.className = 'unknownColumn'
+                unknownValue.id = `damage${item.objectId}`
+                unknown.appendChild(unknownValue)
+                newRow.appendChild(unknown)
+            }
 
-        attunementValue.id = `attunement${item.objectId}`
-        attunementValue.setAttribute('onchange',`updateInventory('${item.objectId}')`)
-        attunement.appendChild(attunementValue)
+            let notes = document.createElement('td')
+            notes.className = 'notesColumn'
+            let notesValue = document.createElement('input')
+            notesValue.value = item.notes
 
 
-        let remove = document.createElement('td')
-        remove.className = 'removeColumn'
-        let removeValue = document.createElement('button')
-        removeValue.innerText = '(-)'
-        removeValue.className = 'tableAction'
-        removeValue.setAttribute('onclick', `removeItem('${item.objectId}')`)
-        remove.appendChild(removeValue)
+            notesValue.id = `notes${item.objectId}`
+            notesValue.setAttribute('onchange', `updateInventory('${item.objectId}')`)
+            notes.appendChild(notesValue)
+            newRow.appendChild(notes)
 
-        newRow.appendChild(title)
-        newRow.appendChild(notes)
-        newRow.appendChild(attunement)
-        newRow.appendChild(remove)
+            let attunement = document.createElement('td')
+            attunement.classList = 'attunementColumn'
+            let attunementValue = document.createElement('input')
+            attunementValue.className = 'attunmentCheckBox'
+            attunementValue.type = 'checkbox'
+            attunementValue.checked = (item.attunement) ? (item.attunement) : false
+
+            attunementValue.id = `attunement${item.objectId}`
+            attunementValue.setAttribute('onchange', `updateInventory('${item.objectId}')`)
+            attunement.appendChild(attunementValue)
+            newRow.appendChild(attunement)
+
+            let remove = document.createElement('td')
+            remove.className = 'removeColumn'
+            let removeValue = document.createElement('button')
+            removeValue.innerText = '(-)'
+            removeValue.className = 'tableAction'
+            removeValue.setAttribute('onclick', `removeItem('${item.objectId}')`)
+            remove.appendChild(removeValue)
+            newRow.appendChild(remove)
+
+
+            itemsTable.appendChild(newRow)
+        })
+
+        let newRow = await addRowValue(bagId, type)
         itemsTable.appendChild(newRow)
-    })
-
-    let newRow = await addRowValue(bagId)
-    itemsTable.appendChild(newRow)
-}
+    }
     inventoryDiv.appendChild(itemsTable)
     main.appendChild(inventoryDiv)
-    
+
     loader(false)
-    return main 
+    return main
 }
 
 function updateInventory(rowId) {
     let data = {
+        qty: document.getElementById(`qty${rowId}`).value,
         title: document.getElementById(`title${rowId}`).value,
         notes: document.getElementById(`notes${rowId}`).value,
         attunement: document.getElementById(`attunement${rowId}`).checked
     }
+    if(document.getElementById(`ac${rowId}`)){
+        data.ac = document.getElementById(`ac${rowId}`).value
+    }
+    else if (document.getElementById(`damage${rowId}`)){
+        data.damage = document.getElementById(`damage${rowId}`).value
+    }
     data = JSON.stringify(data)
     dbUpdateInventory(rowId, data)
 }
+
 function removeItem(id) {
     dbDeleteInventory(id)
     let element = document.getElementById(id)
     element.parentNode.removeChild(element)
 }
-async function addRow(id) {
+async function addRow(id,type) {
     // remove tableNewRow from table
-    if(document.getElementById('tableNewRow')){
+    if (document.getElementById('tableNewRow')) {
         let element = document.getElementById('tableNewRow')
         element.parentNode.removeChild(element)
     }
-    
+
     // create new row in db to get id
     let data = {
         bagId: id
@@ -189,57 +247,86 @@ async function addRow(id) {
     // create fields for user to add to
     let newRow = document.createElement('tr')
     newRow.id = newRowId
+
+    let qty = document.createElement('td')
+    qty.className = 'qtyColumn'
+    let qtyValue = document.createElement('td')
+    qtyValue.id = `qty${newRowId}`
+    qtyValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
+    qty.appendChild(qtyValue)
+    newRow.appendChild(qty)
+
     let title = document.createElement('td')
     title.className = 'itemColumn'
     let titleValue = document.createElement('input')
-    
+
     titleValue.id = `title${newRowId}`
-    titleValue.setAttribute('onchange',`updateInventory( '${newRowId}')`)
+    titleValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
     title.appendChild(titleValue)
+    newRow.appendChild(title)
+
+    if (type == 'Armor') {
+        let unknown = document.createElement('td')
+        unknown.className = 'unknownColumn'
+        let unknownValue = document.createElement('td')
+        unknownValue.id = `ac${newRowId}`
+        unknownValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
+        unknown.appendChild(unknownValue)
+        newRow.appendChild(unknown)
+    } else if (type == 'Weapons') {
+        let unknown = document.createElement('td')
+        unknown.className = 'unknownColumn'
+        let unknownValue = document.createElement('td')
+        unknownValue.id = `damage${newRowId}`
+        unknownValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
+        unknown.appendChild(unknownValue)
+        newRow.appendChild(unknown)
+    }
+
 
     let notes = document.createElement('td')
     notes.className = 'notesColumn'
     let notesValue = document.createElement('input')
-    
+
     notesValue.id = `notes${newRowId}`
-    notesValue.setAttribute('onchange',`updateInventory( '${newRowId}')`)
+    notesValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
     notes.appendChild(notesValue)
+    newRow.appendChild(notes)
 
     let attunement = document.createElement('td')
-    attunement.className = 'attunementColumn'
+    attunement.classList = 'attunementColumn'
     let attunementValue = document.createElement('input')
+    attunementValue.className = 'attunmentCheckBox'
     attunementValue.type = 'checkbox'
-    
+
     attunementValue.id = `attunement${newRowId}`
-    attunementValue.setAttribute('onchange',`updateInventory( '${newRowId}')`)
+    attunementValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
     attunement.appendChild(attunementValue)
+    newRow.appendChild(attunement)
 
     let remove = document.createElement('td')
     remove.className = 'removeColumn'
     let removeValue = document.createElement('button')
     removeValue.innerText = '(-)'
     removeValue.className = 'tableAction'
-    removeValue.setAttribute('onclick',`removeItem('${newRowId}')`)
+    removeValue.setAttribute('onclick', `removeItem('${newRowId}')`)
     remove.appendChild(removeValue)
-
-    newRow.appendChild(title)
-    newRow.appendChild(notes)
-    newRow.appendChild(attunement)
     newRow.appendChild(remove)
 
     let itemsTable = document.getElementById(`itemsTable${id}`)
     itemsTable.appendChild(newRow)
     // add tableNewRow to table
-    let newRowToAdd = await addRowValue(id)
+    let newRowToAdd = await addRowValue(id, type)
     itemsTable.appendChild(newRowToAdd)
 }
-function addRowValue(bagId) {
+
+function addRowValue(bagId, type) {
     let newRow = document.createElement('tr')
     let newRowValue = document.createElement('td')
     let newRowButton = document.createElement('button')
     newRowButton.innerText = '(+)'
     newRowButton.className = 'tableAction'
-    newRowButton.setAttribute('onclick', `addRow('${bagId}')`)
+    newRowButton.setAttribute('onclick', `addRow('${bagId}','${type}')`)
     newRowValue.appendChild(newRowButton)
     newRow.appendChild(newRowValue)
     newRow.id = 'tableNewRow'

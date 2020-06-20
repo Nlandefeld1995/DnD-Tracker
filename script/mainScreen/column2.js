@@ -217,19 +217,19 @@ async function createNavBar() {
             children: [
                 {
                     label: "Inventory",
-                    function: `loadBag('${inventoryBag}')`,
+                    function: `loadBag('${inventoryBag}', 'Inventory')`,
                     id: "navInventory",
                     shown: true
                 },
                 {
                     label: "Armor",
-                    function: `loadBag('${armorBag}')`,
+                    function: `loadBag('${armorBag}', 'Armor')`,
                     id: "navArmor",
                     shown: true
                 },
                 {
                     label: "Weapons",
-                    function: `loadBag('${weaponsBag}')`,
+                    function: `loadBag('${weaponsBag}', 'Weapons')`,
                     id: "navWeapons",
                     shown: true
                 }
@@ -276,7 +276,7 @@ async function createNavBar() {
             id: `nav${bag.name}`,
             shown: true
         }
-        
+
         invList.push(unknownBag)
     }
     invList.push(await navAddNewBag())

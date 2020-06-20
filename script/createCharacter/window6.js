@@ -6,10 +6,10 @@ async function window6Create(){
     
     let title = document.createElement('h1')
     title.innerText = 'Weapons Inventory'
-    modal.appendChild(title)
+    // modal.appendChild(title)
 
     let inventoryBag = await createWeaponBag()
-    let inventory = await createInventoryTable(inventoryBag)
+    let inventory = await createInventoryTable(inventoryBag, 'Weapons')
     modal.appendChild(inventory)
 
     let html = createHtmlElement([], 'window5Create', 'window6Validate', false)
