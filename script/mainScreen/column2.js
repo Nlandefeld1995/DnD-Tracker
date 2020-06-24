@@ -149,7 +149,6 @@ async function createPlayerInfo() {
 
 async function createNavBar() {
     let bags = await dbGetBags()
-    console.log(bags)
     let bagList = []
     let inventoryBag
     let armorBag
@@ -157,9 +156,7 @@ async function createNavBar() {
     let attunements = []
     bags = bags.results
     for (i = 0; i < bags.length; i++) {
-        console.log(bags)
         let bag = bags[i]
-        console.log(`if(${bag.name} == 'Inventory' && ${bag.characterId} == ${globalCharacterID})`)
         if (bag.name == 'Inventory' && bag.characterId == globalCharacterID) {
             inventoryBag = bag.objectId
         }
@@ -195,7 +192,7 @@ async function createNavBar() {
                 },
                 {
                     label: "Money",
-                    function: '',
+                    function: 'loadMoney()',
                     id: 'navMoney',
                     shown: true
                 }
@@ -266,7 +263,6 @@ async function createNavBar() {
         }
     ]
     let invList = (navigation[2]).children
-    console.log(bagList)
     for (i = 0; i < bagList.length; i++) {
         let bag = bagList[i]
         let unknownBag =

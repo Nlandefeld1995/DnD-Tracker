@@ -7,35 +7,35 @@ function window4Create() {
             type: "textbox",
             id: "platinumCount",
             default: character.platinumCount,
-            required: false
+            required: true
         },
         {
             ask: "Gold (gp) Count",
             type: "textbox",
             id: "goldCount",
             default: character.goldCount,
-            required: false
+            required: true
         },
         {
             ask: "Electrum (ep) Count",
             type: "textbox",
             id: "electrumCount",
             default: character.electrumCount,
-            required: false
+            required: true
         },
         {
             ask: "Silver (sp) Count",
             type: "textbox",
             id: "silverCount",
             default: character.silverCount,
-            required: false
+            required: true
         },
         {
             ask: "Copper (cp) Count",
             type: "textbox",
             id: "copperCount",
             default: character.copperCount,
-            required: false
+            required: true
         }
     ]
     let html = createHtmlElement(moneyCounts, 'window3Create', 'window4Validate', false)
@@ -44,7 +44,7 @@ function window4Create() {
 function window4Validate() {
     // Validate Platinum
     let platinumCount = valueById('platinumCount')
-    if(validateWholeNumber(parseInt(platinumCount)) && parseInt(platinumCount) >=0){
+    if(validateWholeNumber((platinumCount)) && parseInt(platinumCount) >=0){
         character.platinumCount = parseInt(platinumCount)
     }
     else{
@@ -53,7 +53,7 @@ function window4Validate() {
     }
     // Validate Gold
     let goldCount = valueById('goldCount')
-    if(validateWholeNumber(parseInt(goldCount)) && parseInt(goldCount) >=0){
+    if(validateWholeNumber((goldCount)) && parseInt(goldCount) >=0){
         character.goldCount = parseInt(goldCount)
     }
     else{
@@ -62,7 +62,7 @@ function window4Validate() {
     }
     // Validate Electrum
     let electrumCount = valueById('electrumCount')
-    if(validateWholeNumber(parseInt(electrumCount)) && parseInt(electrumCount) >=0){
+    if(validateWholeNumber((electrumCount)) && parseInt(electrumCount) >=0){
         character.electrumCount = parseInt(electrumCount)
     }
     else{
@@ -71,7 +71,7 @@ function window4Validate() {
     }
     // Validate Silver
     let silverCount = valueById('silverCount')
-    if(validateWholeNumber(parseInt(silverCount)) && parseInt(silverCount) >=0){
+    if(validateWholeNumber((silverCount)) && parseInt(silverCount) >=0){
         character.silverCount = parseInt(silverCount)
     }
     else{
@@ -80,7 +80,7 @@ function window4Validate() {
     }
     // Validate Copper
     let copperCount = valueById('copperCount')
-    if(validateWholeNumber(parseInt(copperCount)) && parseInt(copperCount) >=0){
+    if(validateWholeNumber((copperCount)) && parseInt(copperCount) >=0){
         character.copperCount = parseInt(copperCount)
     }
     else{

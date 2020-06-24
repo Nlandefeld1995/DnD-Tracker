@@ -1,7 +1,7 @@
 
 var globalUserId
 var globalCharacterID
-var globalCharacter = {}
+var character = {}
 $(document).ready(function () {
     start()
 })
@@ -109,11 +109,12 @@ function validateString(string, len) {
 }
 function validateWholeNumber(num) {
     let valid
-    if (parseInt(num)) {
-        if (Number.isInteger(parseInt(num))) { valid = true }
-        else { valid = false }
+    try{
+        num = parseInt(num)
+        if (Number.isInteger(num)) { valid = true }
+        else {valid = false }
     }
-    else { valid = false }
+    catch { valid = false }
     return valid
 }
 
