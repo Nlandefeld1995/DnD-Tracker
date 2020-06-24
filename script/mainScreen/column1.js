@@ -33,7 +33,7 @@ async function column1(){
     let setDefaultCharacter = document.createElement('a')
     setDefaultCharacter.innerText = 'Set Primary Character'
     let setLayout = document.createElement('a')
-    setLayout.innerText = 'Edit Navigation Buttons'
+    setLayout.innerText = 'Configure Favorites'
     let logout = document.createElement('a')
     logout.innerText = 'Logout'
     logout.setAttribute('onclick', 'start()')
@@ -60,7 +60,7 @@ async function column1(){
     proficiancyBoxInner.className = 'box-inner3'
     let proficiancyBonusTextDiv = document.createElement('div')
     // proficiancyBonusTextDiv.className = 'box-inner'
-    let proficiancyBonusText = document.createElement('h5')
+    let proficiancyBonusText = document.createElement('h6')
     proficiancyBonusText.innerText = 'Proficiancy Bonus'
     proficiancyBonusText.className = 'profName2'
     proficiancyBonusTextDiv.appendChild(proficiancyBonusText)
@@ -85,7 +85,7 @@ async function column1(){
     passivePerceptionDiv.className = 'box-inner3'
     let passivePerceptionTextDiv = document.createElement('div')
     passivePerceptionTextDiv.className = 'proficiancyBox'
-    let passivePerceptionText = document.createElement('h5')
+    let passivePerceptionText = document.createElement('h6')
     passivePerceptionText.innerText = 'Passive Wisdom (Perception)'
     passivePerceptionText.className = 'profName2'
 
@@ -335,7 +335,7 @@ async function buildProficiancies(prof){
         valueScoreDiv.appendChild(valueScoreText)
         valuesDiv.appendChild(valueScoreDiv)
 
-        let textDiv = document.createElement('h5')
+        let textDiv = document.createElement('h6')
         textDiv.innerText = p.name
         textDiv.className = 'profName'
 

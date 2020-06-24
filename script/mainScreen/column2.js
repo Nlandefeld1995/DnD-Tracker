@@ -182,20 +182,8 @@ async function createNavBar() {
 
     let navigation = [
         {
-            label: "Common",
+            label: "Favorites",
             children: [
-                {
-                    label: 'Hit Points',
-                    function: '',
-                    id: 'navHitPoints',
-                    shown: true
-                },
-                {
-                    label: "Money",
-                    function: 'loadMoney()',
-                    id: 'navMoney',
-                    shown: true
-                }
             ]
         },
         {
@@ -235,10 +223,16 @@ async function createNavBar() {
         {
             label: "Character",
             children: [
+                // {
+                //     label: "Player Information",
+                //     function: "",
+                //     id: "navPlayerInformation",
+                //     shown: true
+                // },
                 {
-                    label: "Player Information",
-                    function: "",
-                    id: "navPlayerInformation",
+                    label: "Money",
+                    function: 'loadMoney()',
+                    id: 'navMoney',
                     shown: true
                 },
                 {

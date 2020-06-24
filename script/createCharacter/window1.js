@@ -36,6 +36,20 @@ function window1Create() {
             id: "characterXp",
             default: character.xp,
             required: true
+        },
+        {
+            ask: "Background",
+            type: "textbox",
+            id: "characterBackground",
+            default: character.background,
+            required: true
+        },
+        {
+            ask: "Alighnment",
+            type: "textbox",
+            id: "characterAlignment",
+            default: character.alignment,
+            required: true
         }
     ]
     let html = createHtmlElement(characterInfo, '', 'window1Validate', false)
@@ -99,6 +113,24 @@ async function window1Validate() {
     else {
         error = true
         errorText += ` Please enter a valid whole number 0 or higher as the Experience Points. `
+    }
+
+    let background = valueById('characterBackground')
+    if(validateString(background, 5)){
+        character.background = background
+    }
+    else {
+        error = true
+        errorText += `Please enter a valid Background`
+    }
+
+    let alignment = valueById('characterAlignment')
+    if(validateString(alignment, 5)){
+        character.alignment = alignment
+    }
+    else {
+        error = true
+        errorText += `Please enter a valid Alignment`
     }
 
     // Check for errors

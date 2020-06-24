@@ -24,34 +24,46 @@ function hitPoits(){
     let hitPointsDiv = document.createElement('div')
     hitPointsDiv.className = 'box'
     
-    let maxHitDiv = document.createElement('div')
-    maxHitDiv.className = 'box-inner3'
-    let maxHitText = document.createElement('h5')
-    maxHitText.innerText = 'Hit Point Maximum'
-    maxHitText.className = 'profName'
     
-    let maxHitValue = document.createElement('input')
-    maxHitValue.className = 'inputTextBox2'
-    maxHitValue.value = character.hitPointMax
-    maxHitDiv.appendChild(maxHitValue)
-    maxHitDiv.appendChild(maxHitText)
-
-    hitPointsDiv.appendChild(maxHitDiv)
 
     let currentHitDiv = document.createElement('div')
     currentHitDiv.className = 'box-inner3'
-    let currentHitText = document.createElement('h5')
+    let maxHitDiv = document.createElement('div')
+    maxHitDiv.className = 'box-inner4'
+    let maxHitValue = document.createElement('input')
+    maxHitValue.value = character.hitPointMax
+    maxHitValue.className = 'inputTextBox'
+    let maxHitText = document.createElement('a')
+    maxHitText.innerText = 'Max:'
+    // maxHitText.className = 'inputTextBox'
+    maxHitDiv.appendChild(maxHitText)
+    maxHitDiv.appendChild(maxHitValue)
+    let currentHitText = document.createElement('h6')
     currentHitText.innerText = 'Current Hit Points'
     currentHitText.className = 'profName'
     let currentHitValue = document.createElement('input')
     currentHitValue.className = 'inputTextBox2'
     currentHitValue.value = (character.hitPointCurrent) ? character.hitPointCurrent : character.hitPointMax
+    currentHitDiv.appendChild(maxHitDiv)
     currentHitDiv.appendChild(currentHitValue)
     currentHitDiv.appendChild(currentHitText)
     
     
     hitPointsDiv.appendChild(currentHitDiv)
+
+    let temporaryHitDiv = document.createElement('div')
+    temporaryHitDiv.className = 'box-inner3'
+    let temporaryHitText = document.createElement('h6')
+    temporaryHitText.innerText = 'Temporary Hit Points'
+    temporaryHitText.className = 'profName'
     
+    let temporaryHitValue = document.createElement('input')
+    temporaryHitValue.className = 'inputTextBox2'
+    temporaryHitValue.value = (character.hitPointTemporary) ? character.hitPointTemporary : 0
+    temporaryHitDiv.appendChild(temporaryHitValue)
+    temporaryHitDiv.appendChild(temporaryHitText)
+
+    hitPointsDiv.appendChild(temporaryHitDiv)
 
     return hitPointsDiv
 }
@@ -62,7 +74,7 @@ function acAndInitiative(){
 
     let acDiv = document.createElement('div')
     acDiv.className = 'box-inner3'
-    let acText = document.createElement('h5')
+    let acText = document.createElement('h6')
     acText.innerText = 'Armor Class'
     acText.className = 'profName'
     let acValue = document.createElement('input')
@@ -76,7 +88,7 @@ function acAndInitiative(){
 
     let initiativeDiv = document.createElement('div')
     initiativeDiv.className = 'box-inner3'
-    let initiativeText = document.createElement('h5')
+    let initiativeText = document.createElement('h6')
     initiativeText.innerText = 'Initiative'
     initiativeText.className = 'profName'
     let initiativeValue = document.createElement('input')
@@ -97,7 +109,7 @@ function speedAndDeathSaves(){
 
     let speedDiv = document.createElement('div')
     speedDiv.className = 'box-inner3'
-    let speedText = document.createElement('h5')
+    let speedText = document.createElement('h6')
     speedText.innerText = 'Speed'
     speedText.className = 'profName'
     let speedValue = document.createElement('input')
@@ -111,12 +123,12 @@ function speedAndDeathSaves(){
     let deathSavesDiv = document.createElement('div')
     deathSavesDiv.className = 'box-inner3'
 
-    let deathSavesText = document.createElement('h5')
+    let deathSavesText = document.createElement('h6')
     deathSavesText.innerText = 'Death Saves'
     deathSavesText.id = 'deathSaves'
     
     let successDiv = document.createElement('div')
-    let successText = document.createElement('h5')
+    let successText = document.createElement('h6')
     successText.innerText = 'Successes:'
     successDiv.appendChild(successText)
     for(i=0; i<3; i++){
@@ -127,7 +139,7 @@ function speedAndDeathSaves(){
     }
 
     let failureDiv = document.createElement('div')
-    let failureText = document.createElement('h5')
+    let failureText = document.createElement('h6')
     failureText.innerText = 'Failures:'
     failureDiv.appendChild(failureText)
     for(i=0; i<3; i++){
