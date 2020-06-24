@@ -11,9 +11,10 @@ function loadMoney() {
 
     let platinumDiv = document.createElement('div')
     let platinumText = document.createElement('h3')
-    platinumText.innerText = 'Platinum'
+    platinumText.innerText = 'Platinum:'
     let platinumValue = document.createElement('input')
     platinumValue.type = 'number'
+    platinumValue.className = 'input'
     platinumValue.id = 'moneyPlatinumValue'
     platinumValue.setAttribute('onChange', 'validateMoney()')
     platinumValue.value = character.platinumCount
@@ -24,10 +25,11 @@ function loadMoney() {
 
     let goldDiv = document.createElement('div')
     let goldText = document.createElement('h3')
-    goldText.innerText = 'Gold'
+    goldText.innerText = 'Gold:'
     let goldValue = document.createElement('input')
     goldValue.type = 'number'
     goldValue.id = 'moneyGoldValue'
+    goldValue.className = 'input'
     goldValue.setAttribute('onChange', 'validateMoney()')
     goldValue.value = character.goldCount
     goldDiv.appendChild(goldText)
@@ -36,9 +38,10 @@ function loadMoney() {
 
     let electrumDiv = document.createElement('div')
     let electrumText = document.createElement('h3')
-    electrumText.innerText = 'Electrum'
+    electrumText.innerText = 'Electrum:'
     let electrumValue = document.createElement('input')
     electrumValue.type = 'number'
+    electrumValue.className = 'input'
     electrumValue.id = 'moneyElectrumValue'
     electrumValue.setAttribute('onChange', 'validateMoney()')
     electrumValue.value = character.electrumCount
@@ -48,10 +51,11 @@ function loadMoney() {
 
     let silverDiv = document.createElement('div')
     let silverText = document.createElement('h3')
-    silverText.innerText = 'Silver'
+    silverText.innerText = 'Silver:'
     let silverValue = document.createElement('input')
     silverValue.type = 'number'
     silverValue.id = 'moneySilverValue'
+    silverValue.className = 'input'
     silverValue.setAttribute('onChange', 'validateMoney()')
     silverValue.value = character.silverCount
     silverDiv.appendChild(silverText)
@@ -60,9 +64,10 @@ function loadMoney() {
 
     let copperDiv = document.createElement('div')
     let copperText = document.createElement('h3')
-    copperText.innerText = 'Copper'
+    copperText.innerText = 'Copper:'
     let copperValue = document.createElement('input')
     copperValue.type = 'number'
+    copperValue.className = 'input'
     copperValue.id = 'moneyCopperValue'
     copperValue.setAttribute('onChange', 'validateMoney()')
     copperValue.value = character.copperCount
@@ -74,11 +79,13 @@ function loadMoney() {
     let updateMoneyDiv = document.createElement('div')
     let input = document.createElement('input')
     input.type = 'number'
+    input.className = 'input'
     input.id = 'moneyToCalculate'
     input.placeholder = 'money to +/-'
 
     let moneyType = document.createElement('select')
     moneyType.id = 'moneyType'
+    moneyType.className = 'input'
     let moneyTypes = ['MoneyType', 'Platinum', 'Gold', 'Electrum', 'Silver', 'Copper']
     for (i = 0; i < moneyTypes.length; i++) {
         let option = document.createElement('option')
@@ -89,6 +96,7 @@ function loadMoney() {
 
     let actionType = document.createElement('select')
     actionType.id = 'actionType'
+    actionType.className = 'input'
     let actionTypes = ['ActionType', '+', '-']
     for (i = 0; i < actionTypes.length; i++) {
         let option = document.createElement('option')
@@ -99,6 +107,7 @@ function loadMoney() {
 
     let submit = document.createElement('button')
     submit.innerText = 'Submit'
+    submit.className = 'input'
     submit.setAttribute('onclick', 'calculateMoney()')
 
     updateMoneyDiv.appendChild(input)
@@ -153,11 +162,7 @@ async function calculateMoney() {
                 let tempelectrum = character.electrumCount
                 let tempsilver = character.silverCount
                 let tempcopper = character.copperCount
-                console.log(tempplatinum)
-                console.log(tempgold)
-                console.log(tempelectrum)
-                console.log(tempsilver)
-                console.log(tempcopper)
+
                 if (type == 'platinum') {
                     tempplatinum = tempplatinum - input
                 } else if (type == 'gold') {
@@ -169,11 +174,6 @@ async function calculateMoney() {
                 } else if (type == 'copper') {
                     tempcopper = tempcopper - input
                 }
-                console.log(tempplatinum)
-                console.log(tempgold)
-                console.log(tempelectrum)
-                console.log(tempsilver)
-                console.log(tempcopper)
 
                 while (tempcopper < 0) {
                     tempsilver -= 1
@@ -189,7 +189,7 @@ async function calculateMoney() {
                                 tempgold += 10
                                 if (tempplatinum < 0) {
                                     error = true
-                                    errorText += `You do not have enough money to preform this action`
+                                    errorText = `You do not have enough money to preform this action`
                                     break
                                 }
                             }
@@ -207,7 +207,7 @@ async function calculateMoney() {
                             tempgold += 10
                             if (tempplatinum < 0) {
                                 error = true
-                                errorText += `You do not have enough money to preform this action`
+                                errorText = `You do not have enough money to preform this action`
                                 break
                             }
                         }
@@ -221,7 +221,7 @@ async function calculateMoney() {
                         tempgold += 10
                         if (tempplatinum < 0) {
                             error = true
-                            errorText += `You do not have enough money to preform this action`
+                            errorText = `You do not have enough money to preform this action`
                             break
                         }
                     }
@@ -231,13 +231,13 @@ async function calculateMoney() {
                     tempgold += 10
                     if (tempplatinum < 0) {
                         error = true
-                        errorText += `You do not have enough money to preform this action`
+                        errorText = `You do not have enough money to preform this action`
                         break
                     }
                 }
                 if (tempplatinum < 0) {
                     error = true
-                    errorText += `You do not have enough money to preform this action`
+                    errorText = `You do not have enough money to preform this action`
                     
                 }
                 if(!error){
