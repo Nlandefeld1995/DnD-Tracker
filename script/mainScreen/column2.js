@@ -153,6 +153,8 @@ async function createNavBar() {
     let inventoryBag
     let armorBag
     let weaponsBag
+    let proficienciesBag
+    let characterNotesBag
     let attunements = []
     bags = bags.results
     for (i = 0; i < bags.length; i++) {
@@ -165,6 +167,12 @@ async function createNavBar() {
         }
         else if (bag.name == 'Weapons' && bag.characterId == globalCharacterID) {
             weaponsBag = bag.objectId
+        }
+        else if (bag.name == 'Proficiencies & Languages' && bag.characterId == globalCharacterID) {
+            proficienciesBag = bag.objectId
+        }
+        else if (bag.name == 'Character Notes' && bag.characterId == globalCharacterID) {
+            characterNotesBag = bag.objectId
         }
         else if (bag.characterId == globalCharacterID) {
             bagList.push(bag)
@@ -230,27 +238,27 @@ async function createNavBar() {
                 //     shown: true
                 // },
                 {
-                    label: "Money",
+                    label: "Currency",
                     function: 'loadMoney()',
                     id: 'navMoney',
                     shown: true
                 },
                 {
+                    label: "Proficiencies & Languages",
+                    function: `loadSimpleBag('${proficienciesBag}', 'Proficiencies & Languages')`,
+                    id: "navProficiencies",
+                    shown: true
+                },
+                {
                     label: "Features & Traits",
-                    function: "",
+                    function: "loadFeaturesTraits()",
                     id: "navFeaturesTraits",
                     shown: true
                 },
                 {
-                    label: "Personality Traits",
-                    function: "",
-                    id: "navPersonalityTraits",
-                    shown: true
-                },
-                {
-                    label: "Other Proficiencies",
-                    function: "",
-                    id: "navOtherProficiencies",
+                    label: "Character Notes",
+                    function: `loadSimpleBag('${characterNotesBag}', 'Character Notes')`,
+                    id: "navCharacterNotes",
                     shown: true
                 }
             ]

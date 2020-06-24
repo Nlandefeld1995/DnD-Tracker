@@ -90,9 +90,13 @@ async function createInventoryTable(bagId, type) {
         newHeaderRow.appendChild(unknownColumnHeader)
     } else if (type == 'Weapons') {
         let unknownColumnHeader = document.createElement('th')
-        unknownColumnHeader.innerText = 'Damage'
+        unknownColumnHeader.innerText = 'Atk Bonus'
         unknownColumnHeader.className = 'unknownColumn'
         newHeaderRow.appendChild(unknownColumnHeader)
+        let unknown2ColumnHeader = document.createElement('th')
+        unknown2ColumnHeader.innerText = 'Damage'
+        unknown2ColumnHeader.className = 'unknownColumn'
+        newHeaderRow.appendChild(unknown2ColumnHeader)
     }
 
     let notesHeader = document.createElement('th')
@@ -127,7 +131,7 @@ async function createInventoryTable(bagId, type) {
 
             let qty = document.createElement('td')
             let qtyValue = document.createElement('input')
-            qtyValue.value = item.qty
+            qtyValue.value = (item.qty) ? item.qty : 0
             qty.className = 'qtyColumn'
             qtyValue.id = `qty${item.objectId}`
             qtyValue.setAttribute('onchange', `updateInventory('${item.objectId}')`)
@@ -136,7 +140,7 @@ async function createInventoryTable(bagId, type) {
 
             let title = document.createElement('td')
             let titleValue = document.createElement('textarea')
-            titleValue.value = item.title
+            titleValue.value = (item.title) ? item.title : ''
             title.className = 'itemColumn'
             // title.type = 'text-box'
             titleValue.id = `title${item.objectId}`
@@ -146,27 +150,34 @@ async function createInventoryTable(bagId, type) {
 
             if (type == 'Armor') {
                 let unknown = document.createElement('td')
-                let unknownValue = document.createElement('input')
-                unknownValue.value = item.ac
+                let unknownValue = document.createElement('textarea')
+                unknownValue.value = (item.ac) ? item.ac : ''
                 unknown.className = 'unknownColumn'
                 unknownValue.id = `ac${item.objectId}`
                 unknown.appendChild(unknownValue)
                 newRow.appendChild(unknown)
             } else if (type == 'Weapons') {
                 let unknown = document.createElement('td')
-                let unknownValue = document.createElement('input')
-                unknownValue.value = item.damage
+                let unknownValue = document.createElement('textarea')
+                unknownValue.value = (item.atkBonus) ? item.atkBonus : ''
                 unknown.className = 'unknownColumn'
-                unknownValue.id = `damage${item.objectId}`
+                unknownValue.id = `atkBonus${item.objectId}`
                 unknown.appendChild(unknownValue)
                 newRow.appendChild(unknown)
+                let unknown2 = document.createElement('td')
+                let unknown2Value = document.createElement('textarea')
+                unknown2Value.value = (item.damage) ? item.damage : ''
+                unknown2.className = 'unknownColumn'
+                unknown2Value.id = `damage${item.objectId}`
+                unknown2.appendChild(unknown2Value)
+                newRow.appendChild(unknown2)
             }
 
             let notes = document.createElement('td')
             notes.className = 'notesColumn'
             let notesValue = document.createElement('textarea')
             // notesValue.type = 'text-box'
-            notesValue.value = item.notes
+            notesValue.value = (item.notes) ? item.notes : ''
             notesValue.id = `notes${item.objectId}`
             notesValue.setAttribute('onchange', `updateInventory('${item.objectId}')`)
             notes.appendChild(notesValue)
@@ -219,6 +230,7 @@ function updateInventory(rowId) {
     }
     else if (document.getElementById(`damage${rowId}`)){
         data.damage = document.getElementById(`damage${rowId}`).value
+        data.atkBonus = document.getElementById(`atkBonus${rowId}`).value
     }
     data = JSON.stringify(data)
     dbUpdateInventory(rowId, data)
@@ -250,7 +262,7 @@ async function addRow(id,type) {
 
     let qty = document.createElement('td')
     qty.className = 'qtyColumn'
-    let qtyValue = document.createElement('td')
+    let qtyValue = document.createElement('input')
     qtyValue.id = `qty${newRowId}`
     qtyValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
     qty.appendChild(qtyValue)
@@ -268,7 +280,7 @@ async function addRow(id,type) {
     if (type == 'Armor') {
         let unknown = document.createElement('td')
         unknown.className = 'unknownColumn'
-        let unknownValue = document.createElement('td')
+        let unknownValue = document.createElement('textarea')
         unknownValue.id = `ac${newRowId}`
         unknownValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
         unknown.appendChild(unknownValue)
@@ -276,11 +288,18 @@ async function addRow(id,type) {
     } else if (type == 'Weapons') {
         let unknown = document.createElement('td')
         unknown.className = 'unknownColumn'
-        let unknownValue = document.createElement('td')
-        unknownValue.id = `damage${newRowId}`
+        let unknownValue = document.createElement('textarea')
+        unknownValue.id = `atkBonus${newRowId}`
         unknownValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
         unknown.appendChild(unknownValue)
         newRow.appendChild(unknown)
+        let unknown2 = document.createElement('td')
+        unknown2.className = 'unknownColumn'
+        let unknown2Value = document.createElement('textarea')
+        unknown2Value.id = `damage${newRowId}`
+        unknown2Value.setAttribute('onchange', `updateInventory( '${newRowId}')`)
+        unknown2.appendChild(unknown2Value)
+        newRow.appendChild(unknown2)
     }
 
 

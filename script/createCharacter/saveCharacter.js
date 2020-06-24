@@ -1,4 +1,7 @@
 async function saveCharacter() { 
+    loader(true)
+    let saveButton = document.getElementById('saveCharacterButton')
+    saveButton.disabled = true;
     let save = await dbCreateCharacter(JSON.stringify(character))
     if(save.objectId){
         character.characterId = save.objectId

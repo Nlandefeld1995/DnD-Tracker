@@ -1,26 +1,17 @@
-
-
-async function window7Create(){
+async function window10Create(){
     let modal = document.getElementById('popupModal')
     modal.innerHTML = ''
-    
-    let title = document.createElement('h1')
-    title.innerText = 'Inventory'
-    // modal.appendChild(title)
-
-    let inventoryBag = await createInventoryBag()
-    let inventory = await createInventoryTable(inventoryBag, 'Inventory')
-    modal.appendChild(inventory)
-
-    let html = createHtmlElement([], 'window6Create', 'window7Validate', true)
+    let bag = await createNotesBag()
+    let proficiencies = await createSimpleTable(bag, 'CharacterNotes')
+    modal.appendChild(proficiencies)
+    let html = createHtmlElement([], 'window8Create', 'window10Validate', true)
     modal.appendChild(html)
 }
 
-function window7Validate(){
+function window10Validate(){
     error = false
     errorText = ''
-    // validate max hit
-    
+        
     if (error) {
         let errors = document.createElement('a')
         errors.innerText = errorText
@@ -28,13 +19,14 @@ function window7Validate(){
         valueById('errorArea').appendChild(errors)
     }
     else {
-        window8Create() 
+        saveCharacter()
     }
 }
-async function createInventoryBag(){
+
+async function createNotesBag(){
     let data = {
         characterId: globalCharacterID,
-        name: 'Inventory'
+        name: 'Character Notes'
     }
     data = JSON.stringify(data)
     let bagId = await dbCreateBag(data)
@@ -42,4 +34,3 @@ async function createInventoryBag(){
     bagsToUpdate.push(bagId)
     return bagId
 }
-

@@ -13,10 +13,11 @@ async function column3(){
     column3.appendChild(acAndInitiativeDiv)
     let speedAndDeathSavesDiv = await speedAndDeathSaves()
     column3.appendChild(speedAndDeathSavesDiv)
-    let weaponsDiv = await weapons()
-    column3.appendChild(weaponsDiv)
     let chooseYourOwnDiv = await chooseYourOwn()
     column3.appendChild(chooseYourOwnDiv)
+    let feedbackDiv = await feedback()
+    column3.appendChild(feedbackDiv)
+    
     return column3
 }
 
@@ -160,15 +161,29 @@ function speedAndDeathSaves(){
     return mainDiv
 }
 
-function weapons(){
+function feedback(){
     let mainDiv = document.createElement('div')
     mainDiv.className = 'box2'
-    mainDiv.innerText = 'Weapons list: WIP'
+    mainDiv.innerText = 'Feedback:'
+    let div = document.createElement('div')
+    let other = document.createElement('h5')
+    other.innerText = 'I would love to get your feedback on issues, enhancements and thoughts. You can send that feedback directly to me.'
+    let other2 = document.createElement('br')
+    
+    let name = document.createElement('h5')
+    name.innerText = 'Nolan Landefeld'
+    let email = document.createElement('h5')
+    email.innerText = 'nlandefeld1995@gmail.com'
+    div.appendChild(other)
+    div.appendChild(other2)
+    div.appendChild(name)
+    div.appendChild(email)
+    mainDiv.appendChild(div)
     return mainDiv
 }
 function chooseYourOwn(){
     let mainDiv = document.createElement('div')
     mainDiv.className = 'box2'
-    mainDiv.innerText = 'Choose your own: (drop down)'
+    mainDiv.innerText = 'Choose your own: (drop down) Coming soon'
     return mainDiv
 }

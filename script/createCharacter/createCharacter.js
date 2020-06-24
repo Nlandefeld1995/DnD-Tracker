@@ -1,4 +1,4 @@
-let character = {
+character = {
 }
 let classes = ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard']
 
@@ -158,6 +158,7 @@ function createHtmlElement(objects, backFun, nextFun, last) {
         let save = document.createElement('input')
         save.type = 'button'
         save.value = 'Save'
+        save.id = 'saveCharacterButton'
         save.className = 'input'
         save.onclick = eval(nextFun)
         buttons.appendChild(save)

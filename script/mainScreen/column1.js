@@ -1,19 +1,18 @@
-
-async function column1(){
+async function column1() {
     let column1 = document.createElement('div')
     column1.style.width = '20vw'
     column1.style.borderRight = 'solid #b78846'
-    column1.style.height='100vh'
+    column1.style.height = '100vh'
     column1.style.float = 'left'
-    column1.style.position='relative'
+    column1.style.position = 'relative'
     column1.style.paddingRight = '5px'
     column1.id = 'mainColumn1'
     // div settings 
-        // drop down button/menu
-            // add character
-            // select default character
-            // delete character
-            // logout
+    // drop down button/menu
+    // add character
+    // select default character
+    // delete character
+    // logout
 
     let settingsDiv = document.createElement('div')
     settingsDiv.id = 'settingsDiv'
@@ -26,14 +25,24 @@ async function column1(){
     settingsDropContentDiv.className = 'settingsDropdown-content'
     let loadCharacter = document.createElement('a')
     loadCharacter.innerText = 'Load Character'
+    loadCharacter.setAttribute('onclick', 'oneCharacter()')
+
     let addCharacter = document.createElement('a')
     addCharacter.innerText = 'New Character'
+    addCharacter.setAttribute('onclick', 'oneCharacter()')
+
     let deleteCharacter = document.createElement('a')
     deleteCharacter.innerText = 'Delete Character'
+    deleteCharacter.setAttribute('onclick', 'oneCharacter()')
+
     let setDefaultCharacter = document.createElement('a')
     setDefaultCharacter.innerText = 'Set Primary Character'
+    setDefaultCharacter.setAttribute('onclick', 'oneCharacter()')
+
     let setLayout = document.createElement('a')
     setLayout.innerText = 'Configure Favorites'
+    setLayout.setAttribute('onclick', 'configureFavorites()')
+
     let logout = document.createElement('a')
     logout.innerText = 'Logout'
     logout.setAttribute('onclick', 'start()')
@@ -78,7 +87,7 @@ async function column1(){
     proficiancyBoxInner.appendChild(proficiancyBonusValueDiv)
     proficiancyBoxInner.appendChild(proficiancyBonusTextDiv)
     proficiancyBonusDiv.appendChild(proficiancyBoxInner)
-    
+
 
     // passive wisdom
     let passivePerceptionDiv = document.createElement('div')
@@ -130,13 +139,11 @@ async function column1(){
 
 
 
-    let proficiancies = [
-        {
+    let proficiancies = [{
             name: 'Strength',
             id: 'strengthScore',
             mod: 'strengthMod',
-            children: [
-                {
+            children: [{
                     name: 'Saving Throws',
                     id: 'strengthSavingThrowScore',
                     selected: 'strengthSavingThrow'
@@ -152,8 +159,7 @@ async function column1(){
             name: 'Dexterity',
             id: 'dexScore',
             mod: 'dexMod',
-            children: [
-                {
+            children: [{
                     name: 'Saving Throws',
                     id: 'dexSavingThrowScore',
                     selected: 'dexSavingThrow'
@@ -179,20 +185,17 @@ async function column1(){
             name: "Constitution",
             id: 'conScore',
             mod: 'conMod',
-            children: [
-                {
-                    name: 'Saving Throws',
-                    id: 'conSavingThrowScore',
-                    selected: 'conSavingThrow'
-                }
-            ]
+            children: [{
+                name: 'Saving Throws',
+                id: 'conSavingThrowScore',
+                selected: 'conSavingThrow'
+            }]
         },
         {
             name: "Intelligence",
             id: 'intelScore',
             mod: 'intelMod',
-            children: [
-                {
+            children: [{
                     name: 'Saving Throws',
                     id: 'intelSavingThrowScore',
                     selected: 'intelSavingThrow'
@@ -228,8 +231,7 @@ async function column1(){
             name: 'Wisdom',
             id: 'wisdomScore',
             mod: 'wisdomMod',
-            children: [
-                {
+            children: [{
                     name: 'Saving Throws',
                     id: 'wisdomSavingThrowScore',
                     selected: 'wisdomSavingThrow'
@@ -265,8 +267,7 @@ async function column1(){
             name: 'Charisma',
             id: 'charismaScore',
             mod: 'charismaMod',
-            children: [
-                {
+            children: [{
                     name: 'Saving Throws',
                     id: 'charismaSavingThrowScore',
                     selected: 'charismaSavingThrow'
@@ -294,16 +295,16 @@ async function column1(){
             ]
         }
     ]
-    
+
     let profHtml = await buildProficiancies(proficiancies)
     column1.appendChild(profHtml)
-    
+
     return column1
 
 }
 
 
-async function buildProficiancies(prof){
+async function buildProficiancies(prof) {
     let container = document.createElement('div')
     container.id = 'proficienciesContainer'
 
@@ -328,7 +329,7 @@ async function buildProficiancies(prof){
         valueScoreDiv.className = 'profScoreDiv'
         let valueScoreText = document.createElement('input')
         valueScoreText.value = character[p.id]
-        
+
         valueScoreText.id = `${p.name}Value`
         valueScoreText.className = 'inputTextBox2'
 
@@ -349,7 +350,7 @@ async function buildProficiancies(prof){
         let ul = document.createElement('ul')
 
         let children = p.children
-        children.forEach( child => {
+        children.forEach(child => {
             let li = document.createElement('LI')
             let radio = document.createElement('input')
             radio.type = 'radio'
@@ -358,7 +359,7 @@ async function buildProficiancies(prof){
             radio.checked = character[radioId]
             li.appendChild(radio)
             let text = document.createElement('a')
-            let valueId = child.id 
+            let valueId = child.id
             text.innerText = `${character[valueId]} ${child.name}`
             li.appendChild(text)
             ul.appendChild(li)
