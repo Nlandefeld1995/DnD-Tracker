@@ -135,9 +135,10 @@ async function createInventoryTable(bagId, type) {
             newRow.appendChild(qty)
 
             let title = document.createElement('td')
-            let titleValue = document.createElement('input')
+            let titleValue = document.createElement('textarea')
             titleValue.value = item.title
             title.className = 'itemColumn'
+            // title.type = 'text-box'
             titleValue.id = `title${item.objectId}`
             titleValue.setAttribute('onchange', `updateInventory('${item.objectId}')`)
             title.appendChild(titleValue)
@@ -163,10 +164,9 @@ async function createInventoryTable(bagId, type) {
 
             let notes = document.createElement('td')
             notes.className = 'notesColumn'
-            let notesValue = document.createElement('input')
+            let notesValue = document.createElement('textarea')
+            // notesValue.type = 'text-box'
             notesValue.value = item.notes
-
-
             notesValue.id = `notes${item.objectId}`
             notesValue.setAttribute('onchange', `updateInventory('${item.objectId}')`)
             notes.appendChild(notesValue)
@@ -258,8 +258,8 @@ async function addRow(id,type) {
 
     let title = document.createElement('td')
     title.className = 'itemColumn'
-    let titleValue = document.createElement('input')
-
+    let titleValue = document.createElement('textarea')
+    // titleValue.type = 'text-box'
     titleValue.id = `title${newRowId}`
     titleValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
     title.appendChild(titleValue)
@@ -286,8 +286,8 @@ async function addRow(id,type) {
 
     let notes = document.createElement('td')
     notes.className = 'notesColumn'
-    let notesValue = document.createElement('input')
-
+    let notesValue = document.createElement('textarea')
+    // notesValue.type = 'text-box'
     notesValue.id = `notes${newRowId}`
     notesValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
     notes.appendChild(notesValue)
