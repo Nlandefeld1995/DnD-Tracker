@@ -108,6 +108,9 @@ async function createPlayerInfo() {
     let levelText = document.createElement('h5')
     levelText.innerText = 'Level:'
     let levelValue = document.createElement('input')
+    levelValue.type = 'number'
+    levelValue.id = 'levelValueId'
+    levelValue.readOnly = true
     levelValue.value = character.level
     // levelValue.readOnly = false
     levelValue.className = 'inputTextBox3'
@@ -122,6 +125,9 @@ async function createPlayerInfo() {
 
     let xpValue = document.createElement('input')
     xpValue.value = character.xp
+    xpValue.type = 'number'
+    xpValue.id = 'xpValueId'
+    xpValue.setAttribute('onchange', 'xpLevelUpdate()')
     // xpValue.readOnly = false
     xpValue.className = 'inputTextBox3'
     xpDiv.appendChild(xpText)

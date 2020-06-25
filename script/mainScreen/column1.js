@@ -78,6 +78,7 @@ async function column1() {
     // proficiancyBonusValueDiv.className = 'proficiancyBox'
     let proficiancyBonusValueText = document.createElement('input')
     proficiancyBonusValueText.type = 'number'
+    proficiancyBonusValueText.readOnly = true
     proficiancyBonusValueText.id = 'proficiencyValueId'
     proficiancyBonusValueText.setAttribute('onchange', 'validateProficiencies()')
     proficiancyBonusValueText.value = character.proficiencyBonus
@@ -96,7 +97,7 @@ async function column1() {
     let passivePerceptionTextDiv = document.createElement('div')
     passivePerceptionTextDiv.className = 'proficiancyBox'
     let passivePerceptionText = document.createElement('h6')
-    passivePerceptionText.id = 'passiveWisdomId'
+    
     passivePerceptionText.innerText = 'Passive Wisdom (Perception)'
     passivePerceptionText.className = 'profName2'
 
@@ -105,6 +106,8 @@ async function column1() {
     let passivePerceptionValue = document.createElement('input')
     passivePerceptionValue.value = (character.passivePerception) ? character.passivePerception : 0
     passivePerceptionValue.className = 'inputTextBox2'
+    passivePerceptionValue.readOnly = true
+    passivePerceptionValue.id = 'passiveWisdomId'
     passivePerceptionTextDiv.appendChild(passivePerceptionText)
     passivePerceptionValueDiv.appendChild(passivePerceptionValue)
 

@@ -3,15 +3,9 @@ async function validateProficiencies() {
     let errorText = ''
 
     // non proficiancies list
-    let profBonus = document.getElementById('proficiencyValueId').value
-    if(validateWholeNumber(profBonus)){
-        parseInt(character.proficiencyBonus = profBonus)
-    }
-    else {
-        error=true
-        error+= ' Invalid Proficiency bonus'
-    }
-
+    let level = document.getElementById('levelValueId').value
+    level = parseInt(level)
+    character.proficiencyBonus = await getPBonusByLevel(level)
     let proficiancies = [{
             name: 'Strength',
             id: 'strengthScore',
