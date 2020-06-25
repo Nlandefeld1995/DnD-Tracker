@@ -33,6 +33,8 @@ function hitPoits(){
     maxHitDiv.className = 'box-inner4'
     let maxHitValue = document.createElement('input')
     maxHitValue.value = character.hitPointMax
+    maxHitValue.type = 'number'
+    maxHitValue.id = 'hitPointsMaxId'
     maxHitValue.className = 'inputTextBox'
     let maxHitText = document.createElement('a')
     maxHitText.innerText = 'Max:'
@@ -43,6 +45,8 @@ function hitPoits(){
     currentHitText.innerText = 'Current Hit Points'
     currentHitText.className = 'profName'
     let currentHitValue = document.createElement('input')
+    currentHitValue.type = 'number'
+    currentHitValue.id = 'hitPointsCurrentId'
     currentHitValue.className = 'inputTextBox2'
     currentHitValue.value = (character.hitPointCurrent) ? character.hitPointCurrent : character.hitPointMax
     currentHitDiv.appendChild(maxHitDiv)
@@ -60,6 +64,8 @@ function hitPoits(){
     
     let temporaryHitValue = document.createElement('input')
     temporaryHitValue.className = 'inputTextBox2'
+    temporaryHitValue.type = 'number'
+    temporaryHitValue.id = 'hitPointsTempId'
     temporaryHitValue.value = (character.hitPointTemporary) ? character.hitPointTemporary : 0
     temporaryHitDiv.appendChild(temporaryHitValue)
     temporaryHitDiv.appendChild(temporaryHitText)
@@ -80,6 +86,9 @@ function acAndInitiative(){
     acText.className = 'profName'
     let acValue = document.createElement('input')
     acValue.className = 'inputTextBox2'
+    acValue.type = 'number'
+    acValue.id = 'acId'
+    acValue.setAttribute('onchange', 'acSpeedInitiativeUpdate()')
     acValue.value = character.armorClass 
 
     acDiv.appendChild(acValue)
@@ -94,6 +103,9 @@ function acAndInitiative(){
     initiativeText.className = 'profName'
     let initiativeValue = document.createElement('input')
     initiativeValue.className = 'inputTextBox2'
+    initiativeValue.type = 'number'
+    initiativeValue.id = 'initiativeId'
+    initiativeValue.setAttribute('onchange', 'acSpeedInitiativeUpdate()')
     initiativeValue.value = character.initiative 
 
     initiativeDiv.appendChild(initiativeValue)
@@ -114,6 +126,9 @@ function speedAndDeathSaves(){
     speedText.innerText = 'Speed'
     speedText.className = 'profName'
     let speedValue = document.createElement('input')
+    speedValue.type = 'number'
+    speedValue.id = 'speedId'
+    speedValue.setAttribute('onchange', 'acSpeedInitiativeUpdate()')
     speedValue.className = 'inputTextBox2'
     speedValue.value = character.speed 
 
@@ -132,10 +147,17 @@ function speedAndDeathSaves(){
     let successText = document.createElement('h6')
     successText.innerText = 'Successes:'
     successDiv.appendChild(successText)
+    let totalFailures = (character.deathSavesFailures) ? character.deathSavesFailures : 0
+    let totalSuccess = (character.deathSavesSucesses) ? character.deathSavesSucesses : 0
     for(i=0; i<3; i++){
         let button = document.createElement('input')
         button.type = 'radio'
         button.id = `successSave${i}`
+        button.setAttribute('onchange','deathSavesUpdate()')
+        if((i+ 1) <= totalSuccess ){
+            button.checked = true
+        }
+        
         successDiv.appendChild(button)
     }
 
@@ -143,9 +165,14 @@ function speedAndDeathSaves(){
     let failureText = document.createElement('h6')
     failureText.innerText = 'Failures:'
     failureDiv.appendChild(failureText)
+    
     for(i=0; i<3; i++){
         let button = document.createElement('input')
         button.type = 'radio'
+        if((i+1) <= totalFailures){
+            button.checked = true
+        }
+        button.setAttribute('onchange','deathSavesUpdate()')
         button.id = `failSave${i}`
         failureDiv.appendChild(button)
     }
