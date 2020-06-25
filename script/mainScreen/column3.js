@@ -197,8 +197,10 @@ function feedback(){
     other.innerText = 'I would love to get your feedback on issues, enhancements and thoughts.'
     let other2 = document.createElement('br')
     
-    let name = document.createElement('h5')
+    let name = document.createElement('a')
     name.innerText = 'https://github.com/Nlandefeld1995/DnD-Tracker/issues'
+    name.href = 'https://github.com/Nlandefeld1995/DnD-Tracker/issues'
+    name.style.color = 'white'
     let email = document.createElement('h5')
     email.innerText = 'or nlandefeld1995@gmail.com'
     div.appendChild(other)
