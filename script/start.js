@@ -50,7 +50,7 @@ function loadPopUp() {
     modal.innerHTML = ''
     // Text for modal screen
     let modalText = document.createElement('h3')
-    modalText.innerText = `*BETA* This tracker is *BETA*! I highly reccomend tracking your character through your character sheet to avoid potential loss of information. If there are any issues that you find please send them to me at nlandefeld1995@gmail.com`
+    modalText.innerText = `*BETA* This tracker is *BETA*! I highly reccomend tracking your character through your character sheet to avoid potential loss of information. If there are any issues please add them to: https://github.com/Nlandefeld1995/DnD-Tracker/issues or email me at nlandefeld1995@gmail.com`
     modal.appendChild(modalText)
     // Buttons for login/create
     let loginCreateDiv = document.createElement('div')

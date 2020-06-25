@@ -194,13 +194,13 @@ function feedback(){
     mainDiv.innerText = 'Feedback:'
     let div = document.createElement('div')
     let other = document.createElement('h5')
-    other.innerText = 'I would love to get your feedback on issues, enhancements and thoughts. You can send that feedback directly to me.'
+    other.innerText = 'I would love to get your feedback on issues, enhancements and thoughts.'
     let other2 = document.createElement('br')
     
     let name = document.createElement('h5')
-    name.innerText = 'Nolan Landefeld'
+    name.innerText = 'https://github.com/Nlandefeld1995/DnD-Tracker/issues'
     let email = document.createElement('h5')
-    email.innerText = 'nlandefeld1995@gmail.com'
+    email.innerText = 'or nlandefeld1995@gmail.com'
     div.appendChild(other)
     div.appendChild(other2)
     div.appendChild(name)
