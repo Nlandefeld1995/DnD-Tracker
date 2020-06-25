@@ -65,7 +65,7 @@ async function column1() {
     let proficiancyBonusDiv = document.createElement('div')
     proficiancyBonusDiv.className = 'box'
     proficiancyBonusDiv.id = 'proficiancyBonusDiv'
-    let proficiancyBoxInner = document.createElement('id')
+    let proficiancyBoxInner = document.createElement('div')
     proficiancyBoxInner.className = 'box-inner3'
     let proficiancyBonusTextDiv = document.createElement('div')
     // proficiancyBonusTextDiv.className = 'box-inner'
@@ -77,8 +77,9 @@ async function column1() {
     let proficiancyBonusValueDiv = document.createElement('div')
     // proficiancyBonusValueDiv.className = 'proficiancyBox'
     let proficiancyBonusValueText = document.createElement('input')
+    proficiancyBonusValueText.type = 'number'
     proficiancyBonusValueText.id = 'proficiencyValueId'
-    proficiancyBonusValueText.setAttribute('onchange', 'updateProficiencyBonus()')
+    proficiancyBonusValueText.setAttribute('onchange', 'validateProficiencies()')
     proficiancyBonusValueText.value = character.proficiencyBonus
     proficiancyBonusValueText.className = 'inputTextBox2'
 
@@ -95,6 +96,7 @@ async function column1() {
     let passivePerceptionTextDiv = document.createElement('div')
     passivePerceptionTextDiv.className = 'proficiancyBox'
     let passivePerceptionText = document.createElement('h6')
+    passivePerceptionText.id = 'passiveWisdomId'
     passivePerceptionText.innerText = 'Passive Wisdom (Perception)'
     passivePerceptionText.className = 'profName2'
 
@@ -317,11 +319,12 @@ async function buildProficiancies(prof) {
         let valueModDiv = document.createElement('div')
         valueModDiv.className = 'box-inner2'
         let valueModText = document.createElement('input')
+        // valueModText.type = 'number'
         valueModText.value = character[p.mod]
         valueModText.readOnly = true
-        valueModText.id = `${p.name}Mod`
+        valueModText.id = `${p.mod}Mod`
         valueModText.className = 'inputTextBox'
-
+        valueModText.setAttribute('onchange', 'validateProficiencies()')
         valueModDiv.appendChild(valueModText)
         valuesDiv.appendChild(valueModDiv)
 
@@ -329,8 +332,11 @@ async function buildProficiancies(prof) {
         valueScoreDiv.className = 'profScoreDiv'
         let valueScoreText = document.createElement('input')
         valueScoreText.value = character[p.id]
+        valueScoreText.id = `${p.id}Id`
+        valueScoreText.type = 'number'
+        valueScoreText.setAttribute('onchange', 'validateProficiencies()')
 
-        valueScoreText.id = `${p.name}Value`
+        // valueScoreText.id = `${p.name}Value`
         valueScoreText.className = 'inputTextBox2'
 
         valueScoreDiv.appendChild(valueScoreText)
@@ -357,10 +363,16 @@ async function buildProficiancies(prof) {
             radio.className = 'radioButton'
             let radioId = child.selected
             radio.checked = character[radioId]
+            radio.setAttribute('onchange', 'validateProficiencies()')
+            radio.id = `${radioId}Id`
             li.appendChild(radio)
-            let text = document.createElement('a')
+            let textValue = document.createElement('a')
             let valueId = child.id
-            text.innerText = `${character[valueId]} ${child.name}`
+            textValue.innerText = character[valueId]
+            textValue.id = `${valueId}Id`
+            let text = document.createElement('a')
+            text.innerText = `  ${child.name}`
+            li.appendChild(textValue)
             li.appendChild(text)
             ul.appendChild(li)
         })

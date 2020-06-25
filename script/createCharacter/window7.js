@@ -12,7 +12,7 @@ async function window7Create(){
     let inventory = await createInventoryTable(inventoryBag, 'Inventory')
     modal.appendChild(inventory)
 
-    let html = createHtmlElement([], 'window6Create', 'window7Validate', true)
+    let html = createHtmlElement([], 'window6Create', 'window7Validate', false)
     modal.appendChild(html)
 }
 
