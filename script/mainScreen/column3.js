@@ -151,7 +151,7 @@ function speedAndDeathSaves(){
     let totalSuccess = (character.deathSavesSucesses) ? character.deathSavesSucesses : 0
     for(i=0; i<3; i++){
         let button = document.createElement('input')
-        button.type = 'radio'
+        button.type = 'checkbox'
         button.id = `successSave${i}`
         button.setAttribute('onchange','deathSavesUpdate()')
         if((i+ 1) <= totalSuccess ){
@@ -168,7 +168,7 @@ function speedAndDeathSaves(){
     
     for(i=0; i<3; i++){
         let button = document.createElement('input')
-        button.type = 'radio'
+        button.type = 'checkbox'
         if((i+1) <= totalFailures){
             button.checked = true
         }

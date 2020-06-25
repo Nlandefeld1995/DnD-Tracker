@@ -362,8 +362,8 @@ async function buildProficiancies(prof) {
         children.forEach(child => {
             let li = document.createElement('LI')
             let radio = document.createElement('input')
-            radio.type = 'radio'
-            radio.className = 'radioButton'
+            radio.type = 'checkbox'
+            radio.className = 'checkBox'
             let radioId = child.selected
             radio.checked = character[radioId]
             radio.setAttribute('onchange', 'validateProficiencies()')

@@ -332,6 +332,8 @@ h1 {
   background: none;
   color: white;
   font-size: large;
+  position: inherit;
+    padding-left: 15%;
 }
 
 .inputTextBox2 {
@@ -340,6 +342,8 @@ h1 {
   background: none;
   color: white;
   font-size: xx-large;
+  position: inherit;
+    padding-left: 15%;
 }
 
 .profName {
@@ -368,7 +372,7 @@ h1 {
   overflow: scroll;
 }
 
-.radioButton {
+.checkBox {
   margin-right: 10px
 }
 
@@ -916,4 +920,31 @@ textarea {
   height: 100%;
   width: 100%;
   overflow: scroll;
+}
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+} */
+
+
+
+ /* input[type="checkbox"] {
+  visibility: hidden;
+} */
+
+ input[type="checkbox"]:checked + label {
+  background-color: #66bb6a;
+  border-color: #66bb6a;
+}
+
+ input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+input[type=number] {
+  position: relative;
+  cursor: pointer;
 }
