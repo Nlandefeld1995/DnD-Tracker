@@ -119,8 +119,15 @@ function createHtmlElement(objects, backFun, nextFun, last) {
             if (obj.required) {
                 text.innerText = `*${text.innerText}`
             }
-            let input = document.createElement('input')
+            let input 
+            if (obj.type == 'textarea'){
+                input = document.createElement('textarea')
+            }
+            else {
+            input = document.createElement('input')
             input.type = obj.type
+            }
+            
             input.id = obj.id
             input.className = 'input'
             if (obj.default) {

@@ -10,54 +10,11 @@ function window2Create() {
             required: true
         },
         {
-            ask: "Proficient Saving Throw (strength)",
-            type: 'checkbox',
-            id: "strengthSavingThrow",
-            default: character.strengthSavingThrow,
-            required: false
-        },
-        {
-            ask: "Proficient Athletics (strength)",
-            type: 'checkbox',
-            id: "athletics",
-            default: character.athletics,
-            required: false
-        },
-        {
             ask: "Dexterity score",
             type: "textbox",
             id: "dexScore",
             default: character.dexScore,
             required: true
-        },
-        {
-            ask: "Proficient Saving Throw (dex)",
-            type: 'checkbox',
-            id: "dexSavingThrow",
-            default: character.dexSavingThrow,
-            required: false
-        },
-        {
-            ask: "Proficient Acrobatics (dex)",
-            type: 'checkbox',
-            id: "acrobatics",
-            default: character.acrobatics,
-            required: false
-        },
-        {
-            ask: "Proficient Sleight of Hand (dex)",
-            type: 'checkbox',
-            id: "sleightOfHand",
-            default: character.sleightOfHand,
-            required: false
-        }
-        ,
-        {
-            ask: "Proficient Stealth (dex)",
-            type: 'checkbox',
-            id: "stealth",
-            default: character.stealth,
-            required: false
         },
         {
             ask: "Constitution Score",
@@ -67,61 +24,13 @@ function window2Create() {
             required: true
         },
         {
-            ask: "Proficient Saving Throw (con)",
-            type: 'checkbox',
-            id: "conSavingThrow",
-            default: character.conSavingThrow,
-            required: false
-        },
-        {
             ask: "Intelligence Score",
             type: "textbox",
             id: "intelScore",
             default: character.intelScore,
             required: true
         },
-        {
-            ask: "Proficient Saving Throw (intel)",
-            type: 'checkbox',
-            id: "intelSavingThrow",
-            default: character.intelSavingThrow,
-            required: false
-        },
-        {
-            ask: "Proficient Arcana (intel)",
-            type: 'checkbox',
-            id: "arcana",
-            default: character.arcana,
-            required: false
-        },
-        {
-            ask: "Proficient History (intel)",
-            type: 'checkbox',
-            id: "history",
-            default: character.history,
-            required: false
-        },
-        {
-            ask: "Proficient Investigation (intel)",
-            type: 'checkbox',
-            id: "investigation",
-            default: character.investigation,
-            required: false
-        },
-        {
-            ask: "Proficient Nature (intel)",
-            type: 'checkbox',
-            id: "nature",
-            default: character.nature,
-            required: false
-        },
-        {
-            ask: "Proficient Religion (intel)",
-            type: 'checkbox',
-            id: "religion",
-            default: character.religion,
-            required: false
-        },
+    
         {
             ask: "Wisdom Score",
             type: "textbox",
@@ -129,89 +38,13 @@ function window2Create() {
             default: character.wisdomScore,
             required: true
         },
-        {
-            ask: "Proficient Saving Throw (wisdom)",
-            type: 'checkbox',
-            id: "wisdomSavingThrow",
-            default: character.wisdomSavingThrow,
-            required: false
-        },
-        {
-            ask: "Proficient Animal Handling (wisdom)",
-            type: 'checkbox',
-            id: "animalHandling",
-            default: character.animalHandling,
-            required: false
-        },
-        {
-            ask: "Proficient Insight (wisdom)",
-            type: 'checkbox',
-            id: "insight",
-            default: character.insight,
-            required: false
-        },
-        {
-            ask: "Proficient Medicine (wisdom)",
-            type: 'checkbox',
-            id: "medicine",
-            default: character.medicine,
-            required: false
-        },
-        {
-            ask: "Proficient Perception (wisdom)",
-            type: 'checkbox',
-            id: "perception",
-            default: character.perception,
-            required: false
-        },
-        {
-            ask: "Proficient Survival (wisdom)",
-            type: 'checkbox',
-            id: "survival",
-            default: character.survival,
-            required: false
-        },
+        
         {
             ask: "Charisma Score",
             type: "textbox",
             id: "charismaScore",
             default: character.charismaScore,
             required: true
-        },
-        {
-            ask: "Proficient Saving Throw (charisma)",
-            type: 'checkbox',
-            id: "charismaSavingThrow",
-            default: character.charismaSavingThrow,
-            required: false
-        },
-        {
-            ask: "Proficient Deception (charisma)",
-            type: 'checkbox',
-            id: "deception",
-            default: character.deception,
-            required: false
-        },
-        {
-            ask: "Proficient intimidation (charisma)",
-            type: 'checkbox',
-            id: "intimidation",
-            default: character.intimidation,
-            required: false
-        },
-        {
-            ask: "Proficient Performance (charisma)",
-            type: 'checkbox',
-            id: "performance",
-            default: character.performance,
-            required: false
-        },
-        {
-            ask: "Proficient Persuasion (charisma)",
-            type: 'checkbox',
-            id: "persuasion",
-            default: character.persuasion,
-            required: false
         }
 
     ]
@@ -395,8 +228,8 @@ async function window2Validate() {
     function gatherAbilities(array) {
         array.forEach(ability => {
             
-            character[ability.name] = document.getElementById(ability.name).checked
-            character[ability.name] = document.getElementById(ability.name).checked
+            character[ability.name] = false
+            character[ability.name] = false
             if (character[ability.name]) {
                 character[`${ability.name}Score`] = character.proficiencyBonus + character[`${ability.cat}Mod`]
             }

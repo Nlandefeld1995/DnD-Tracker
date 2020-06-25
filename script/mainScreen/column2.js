@@ -205,7 +205,7 @@ async function createNavBar() {
             children: [
                 {
                     label: "Spells",
-                    function: "",
+                    function: "configureFavorites()",
                     id: "navSpells",
                     shown: true
                 }

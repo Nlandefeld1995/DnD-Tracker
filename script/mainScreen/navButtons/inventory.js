@@ -134,6 +134,7 @@ async function createInventoryTable(bagId, type) {
             qtyValue.value = (item.qty) ? item.qty : 0
             qty.className = 'qtyColumn'
             qtyValue.id = `qty${item.objectId}`
+            qtyValue.type = 'number'
             qtyValue.setAttribute('onchange', `updateInventory('${item.objectId}')`)
             qty.appendChild(qtyValue)
             newRow.appendChild(qty)
@@ -264,6 +265,7 @@ async function addRow(id,type) {
     qty.className = 'qtyColumn'
     let qtyValue = document.createElement('input')
     qtyValue.id = `qty${newRowId}`
+    qtyValue.type = 'number'
     qtyValue.setAttribute('onchange', `updateInventory( '${newRowId}')`)
     qty.appendChild(qtyValue)
     newRow.appendChild(qty)
